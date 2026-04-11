@@ -197,8 +197,8 @@
 
         /* ── GAME ── */
         #gameCanvas {
-            border-radius: 8px;
-            box-shadow: 0 0 0 1px #e2e8f0, 0 12px 40px rgba(15, 118, 110, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 0 0 1px #e2e8f0, 0 20px 50px rgba(15, 118, 110, 0.2);
         }
         .game-log::-webkit-scrollbar { width:4px; }
         .game-log::-webkit-scrollbar-thumb { background:var(--gold); border-radius:4px; }
@@ -521,7 +521,6 @@
         </div>
 
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8" id="propGrid">
-            <!-- Card 1: Vistara Highlands -->
             <div class="prop-card bg-white shadow-md reveal" data-status="pre-selling">
                 <div class="overflow-hidden h-56 relative">
                     <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=600&q=80"
@@ -555,7 +554,6 @@
                 </div>
             </div>
 
-            <!-- Card 2: Sereno Coves -->
             <div class="prop-card bg-white shadow-md reveal" style="transition-delay:.1s" data-status="rfo">
                 <div class="overflow-hidden h-56 relative">
                     <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=600&q=80"
@@ -589,7 +587,6 @@
                 </div>
             </div>
 
-            <!-- Card 3: Elysian Heights Tagaytay Ridge -->
             <div class="prop-card bg-white shadow-md reveal" style="transition-delay:.2s" data-status="new">
                 <div class="overflow-hidden h-56 relative">
                     <img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=600&q=80"
@@ -623,7 +620,6 @@
                 </div>
             </div>
 
-            <!-- Card 4: Tierra Alta Village -->
             <div class="prop-card bg-white shadow-md reveal" style="transition-delay:.05s" data-status="pre-selling">
                 <div class="overflow-hidden h-56 relative">
                     <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80"
@@ -657,7 +653,6 @@
                 </div>
             </div>
 
-            <!-- Card 5: Pinnacle One Imus -->
             <div class="prop-card bg-white shadow-md reveal" style="transition-delay:.15s" data-status="new">
                 <div class="overflow-hidden h-56 relative">
                     <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=600&q=80"
@@ -691,7 +686,6 @@
                 </div>
             </div>
 
-            <!-- Card 6: Northgate Skyline -->
             <div class="prop-card bg-white shadow-md reveal" style="transition-delay:.25s" data-status="new">
                 <div class="overflow-hidden h-56 relative">
                     <img src="https://images.summitmedia-digital.com/spotph/images/2024/03/26/bantayan-1-1711427172.webp"
@@ -736,7 +730,7 @@
 </section>
 
 <section id="game" class="py-20 relative border-y border-gray-100" style="background: linear-gradient(135deg, #ffffff 0%, var(--cream) 100%);">
-    <div class="container mx-auto px-4 relative z-10">
+    <div class="w-full max-w-[1600px] mx-auto px-4 relative z-10">
         <div class="text-center mb-10 reveal">
             <div class="section-label mb-4 justify-center" style="color:var(--gold);">Interactive Experience</div>
             <h2 class="font-display text-4xl lg:text-5xl font-bold text-brand-deep">
@@ -745,8 +739,8 @@
             <p class="text-gray-500 text-xs mt-3 font-mono tracking-wide">40-SPACE BOARD · REAL ESTATE STRATEGY · 3 AI RIVALS</p>
         </div>
 
-        <div class="flex flex-col lg:flex-row gap-6 items-start">
-            <div class="w-full lg:w-56 space-y-4 flex-shrink-0">
+        <div class="flex flex-col xl:flex-row gap-6 items-start">
+            <div class="w-full xl:w-56 space-y-4 flex-shrink-0">
                 <div id="card-0" class="bg-white p-4 rounded border border-gray-200 shadow-sm transition-all active-p0">
                     <div class="flex justify-between font-bold text-brand-teal text-sm border-b border-gray-100 pb-2">
                         <span>YOU</span><span class="font-display text-lg">₱<span id="cash-0">1500</span></span>
@@ -783,41 +777,55 @@
                 </div>
             </div>
 
-            <div class="relative flex-1 flex justify-center items-center rounded-xl p-3 border border-brand-gold/30 shadow-2xl overflow-hidden min-h-[400px]" style="background:#0d1117;">
-                <canvas id="gameCanvas" width="715" height="715" class="max-w-full h-auto"></canvas>
-                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center w-72 pointer-events-none" id="centerOverlay">
+            <div class="relative flex-1 flex justify-center items-center rounded-xl p-3 border border-brand-gold/30 shadow-2xl overflow-hidden min-h-[600px] w-full" style="background:#0d1117;">
+                <canvas id="gameCanvas" width="1650" height="1650" style="width: 100%; height: auto; max-width: 100%; display: block; margin: 0 auto;"></canvas>
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center w-80 pointer-events-none z-50" id="centerOverlay">
                     <button id="rollBtn" onclick="humanRoll()" class="pointer-events-auto w-full text-white text-xl font-bold py-5 rounded shadow-2xl transition transform hover:scale-105 border-2 border-white mb-3 font-display tracking-widest uppercase">
                         Roll Dice
                     </button>
-                    <div id="buyModal" class="hidden pointer-events-auto bg-white text-brand-deep p-8 rounded shadow-2xl border border-brand-gold">
-                        <div class="text-[10px] font-bold text-brand-gold uppercase tracking-widest mb-2 font-mono border-b border-gray-100 pb-2">New Property</div>
-                        <h3 class="font-display font-bold text-2xl mb-1 mt-3" id="buyTitle">Property Name</h3>
-                        <p class="text-3xl font-bold text-brand-teal mb-1 font-display">₱<span id="buyPrice">0</span></p>
-                        <p class="text-[10px] text-gray-500 mb-5 font-mono uppercase tracking-widest">Rent: ₱<span id="buyRent">0</span>/landing</p>
-                        <div class="space-y-2">
-                            <button onclick="buyProperty()" class="w-full bg-brand-deep text-white font-bold py-3 rounded hover:bg-brand-teal transition text-sm tracking-wide">PURCHASE</button>
-                            <button onclick="passProperty()" class="w-full bg-white border border-gray-200 text-gray-500 font-bold py-3 rounded hover:bg-gray-50 transition text-sm tracking-wide">PASS</button>
+                    
+                    <div id="buyModal" class="hidden pointer-events-auto bg-white text-brand-deep p-8 rounded shadow-2xl border-2 border-brand-gold">
+                        <div class="text-[12px] font-bold text-brand-gold uppercase tracking-widest mb-2 font-mono border-b border-gray-100 pb-2">New Property</div>
+                        <h3 class="font-display font-bold text-3xl mb-2 mt-3" id="buyTitle">Property Name</h3>
+                        <p class="text-4xl font-bold text-brand-teal mb-2 font-display">₱<span id="buyPrice">0</span></p>
+                        <p class="text-[11px] text-gray-500 mb-6 font-mono uppercase tracking-widest">Base Rent: ₱<span id="buyRent">0</span></p>
+                        <div class="space-y-3">
+                            <button onclick="buyProperty()" class="w-full bg-brand-deep text-white font-bold py-4 rounded hover:bg-brand-teal transition text-sm tracking-widest uppercase">PURCHASE</button>
+                            <button onclick="passProperty()" class="w-full bg-white border-2 border-gray-200 text-gray-500 font-bold py-4 rounded hover:bg-gray-50 transition text-sm tracking-widest uppercase">PASS</button>
                         </div>
                     </div>
-                    <div id="turnIndicator" class="hidden text-brand-deep font-bold text-sm bg-white border border-brand-gold/50 shadow-xl rounded px-6 py-4 font-mono uppercase tracking-widest">
+                    
+                    <div id="buildModal" class="hidden pointer-events-auto bg-white text-brand-deep p-8 rounded shadow-2xl border-2 border-brand-teal">
+                        <div class="text-[12px] font-bold text-brand-teal uppercase tracking-widest mb-2 font-mono border-b border-gray-100 pb-2" id="buildSubtitle">Upgrade Property</div>
+                        <h3 class="font-display font-bold text-3xl mb-2 mt-3" id="buildTitle">Property Name</h3>
+                        <p class="text-4xl font-bold text-brand-gold mb-2 font-display">₱<span id="buildCost">0</span></p>
+                        <p class="text-[11px] text-gray-500 mb-6 font-mono uppercase tracking-widest">New Rent: ₱<span id="buildRent">0</span></p>
+                        <div class="space-y-3">
+                            <button id="btnConfirmBuild" class="w-full bg-brand-teal text-white font-bold py-4 rounded hover:bg-brand-deep transition text-sm tracking-widest uppercase">UPGRADE</button>
+                            <button onclick="skipBuild()" class="w-full bg-white border-2 border-gray-200 text-gray-500 font-bold py-4 rounded hover:bg-gray-50 transition text-sm tracking-widest uppercase">PASS</button>
+                        </div>
+                    </div>
+
+                    <div id="turnIndicator" class="hidden text-brand-deep font-bold text-lg bg-white border-2 border-brand-gold/50 shadow-xl rounded px-8 py-5 font-mono uppercase tracking-widest">
                         Thinking…
                     </div>
                 </div>
-                <div id="sellModal" class="hidden absolute inset-0 bg-white/95 backdrop-blur-sm z-30 flex flex-col items-center justify-center p-6 border border-brand-gold/20">
-                    <h3 class="font-display text-3xl font-bold mb-1 text-brand-deep">Portfolio Management</h3>
-                    <p class="text-gray-500 text-[10px] mb-6 font-mono uppercase tracking-widest">Liquidate at 50% Asset Value</p>
-                    <div id="assetList" class="w-full max-w-md max-h-72 overflow-y-auto space-y-2 mb-6"></div>
-                    <button onclick="closeSellMenu()" class="border border-brand-deep text-brand-deep px-10 py-3 rounded hover:bg-brand-light transition font-bold text-sm tracking-widest uppercase">Close</button>
+                
+                <div id="sellModal" class="hidden absolute inset-0 bg-white/95 backdrop-blur-sm z-[60] flex flex-col items-center justify-center p-6 border border-brand-gold/20">
+                    <h3 class="font-display text-4xl font-bold mb-2 text-brand-deep">Portfolio Management</h3>
+                    <p class="text-gray-500 text-xs mb-8 font-mono uppercase tracking-widest">Liquidate at 50% Asset Value</p>
+                    <div id="assetList" class="w-full max-w-lg max-h-96 overflow-y-auto space-y-3 mb-8"></div>
+                    <button onclick="closeSellMenu()" class="border-2 border-brand-deep text-brand-deep px-12 py-4 rounded hover:bg-brand-light transition font-bold text-sm tracking-widest uppercase">Close</button>
                 </div>
-                <div id="gameOver" class="hidden absolute inset-0 bg-brand-deep/95 backdrop-blur-md z-40 flex flex-col items-center justify-center text-center p-8 border border-brand-gold">
-                    <div class="text-5xl mb-4">🏛️</div>
-                    <h1 class="font-display text-6xl font-bold text-brand-gold mb-3" id="winnerText">Victory!</h1>
-                    <p class="text-brand-light mb-8 text-sm font-mono tracking-widest uppercase">Monopoly Secured</p>
-                    <button onclick="location.reload()" class="bg-brand-gold text-brand-deep px-10 py-3.5 rounded font-bold hover:scale-105 transition text-sm tracking-widest uppercase">New Simulation</button>
+                
+                <div id="gameOver" class="hidden absolute inset-0 bg-brand-deep/95 backdrop-blur-md z-[70] flex flex-col items-center justify-center text-center p-8 border border-brand-gold">
+                    <h1 class="font-display text-7xl font-bold text-brand-gold mb-4" id="winnerText">Victory!</h1>
+                    <p class="text-brand-light mb-10 text-lg font-mono tracking-widest uppercase">Monopoly Secured</p>
+                    <button onclick="location.reload()" class="bg-brand-gold text-brand-deep px-12 py-4 rounded font-bold hover:scale-105 transition text-base tracking-widest uppercase">New Simulation</button>
                 </div>
             </div>
 
-            <div class="w-full lg:w-48 space-y-4 flex-shrink-0">
+            <div class="w-full xl:w-48 space-y-4 flex-shrink-0">
                 <div class="bg-white p-5 rounded border border-gray-200 shadow-sm text-xs space-y-3">
                     <div class="font-bold text-brand-deep uppercase tracking-widest text-[10px] mb-3 font-mono border-b border-gray-100 pb-2">Districts</div>
                     <div class="flex items-center gap-3"><span class="w-3 h-3 rounded-full" style="background:#b89c72"></span><span class="text-gray-600 font-medium">Casita · Sereno</span></div>
@@ -1142,7 +1150,7 @@ function filterProps(status, btn) {
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 const SIDE = 11;
-const TILE_SIZE = 100;
+const TILE_SIZE = 150; 
 canvas.width = TILE_SIZE * SIDE;
 canvas.height = TILE_SIZE * SIDE;
 const TOTAL = 40;
@@ -1203,9 +1211,9 @@ const tileData = [
 
 let players = [
     { id:0, name:"You",      color:"#0f766e", token:"♟", cash:1500, pos:0, props:[], isBot:false },
-    { id:1, name:"Bot1", color:"#d4af37", token:"♞", cash:1500, pos:0, props:[], isBot:true  },
-    { id:2, name:"Bot2",color:"#042f2e", token:"♜", cash:1500, pos:0, props:[], isBot:true  },
-    { id:3, name:"Bot3",  color:"#94a3b8", token:"♝", cash:1500, pos:0, props:[], isBot:true  },
+    { id:1, name:"Bot1",     color:"#d4af37", token:"♞", cash:1500, pos:0, props:[], isBot:true  },
+    { id:2, name:"Bot2",     color:"#042f2e", token:"♜", cash:1500, pos:0, props:[], isBot:true  },
+    { id:3, name:"Bot3",     color:"#94a3b8", token:"♝", cash:1500, pos:0, props:[], isBot:true  },
 ];
 
 let tiles = [];
@@ -1213,18 +1221,14 @@ let turn = 0, isAnimating = false, waitingForInput = false;
 
 function getTilePos(i) {
     const s = TILE_SIZE;
-    const N = SIDE - 1; // = 10
+    const N = SIDE - 1; 
     if (i <= N) {
-        // Bottom row: right to left (GO=0 at bottom-right, tile 10 at bottom-left)
         return { x: (N - i) * s, y: N * s };
     } else if (i <= 2 * N) {
-        // Left column: bottom to top
         return { x: 0, y: (N - (i - N)) * s };
     } else if (i <= 3 * N) {
-        // Top row: left to right
         return { x: (i - 2 * N) * s, y: 0 };
     } else {
-        // Right column: top to bottom
         return { x: N * s, y: (i - 3 * N) * s };
     }
 }
@@ -1233,23 +1237,55 @@ function buildTiles() {
     for (let i = 0; i < TOTAL; i++) {
         const [name, type, price, rent, group] = tileData[i];
         const pos = getTilePos(i);
-        tiles.push({ index:i, name, type, price, rent, group, owner:null, x:pos.x, y:pos.y });
+        tiles.push({ index:i, name, type, price, rent, group, owner:null, houses:0, hotel:false, x:pos.x, y:pos.y });
     }
+}
+
+function ownsMonopoly(pid, group) {
+    if (!group) return false;
+    const groupTiles = tiles.filter(t => t.group === group);
+    return groupTiles.every(t => t.owner === pid);
+}
+
+function getRent(t) {
+    if (t.type !== 'prop' && t.type !== 'rr' && t.type !== 'util') return t.rent;
+    if (t.type === 'rr' || t.type === 'util') {
+        let owned = tiles.filter(tile => tile.group === t.group && tile.owner === t.owner).length;
+        return t.rent * owned * 2; 
+    }
+    if (!t.group) return t.rent;
+    
+    let multiplier = 1;
+    if (t.houses === 0 && !t.hotel) {
+        if (ownsMonopoly(t.owner, t.group)) multiplier = 2;
+        else multiplier = 1;
+    }
+    else if (t.houses === 1) multiplier = 5;
+    else if (t.houses === 2) multiplier = 15;
+    else if (t.houses === 3) multiplier = 40; 
+    else if (t.houses === 4) multiplier = 80;
+    else if (t.hotel) multiplier = 150;
+    
+    return t.rent * multiplier;
+}
+
+function getNextRent(t) {
+    let temp = { ...t };
+    if (temp.houses < 4) temp.houses++;
+    else { temp.houses = 0; temp.hotel = true; }
+    return getRent(temp);
 }
 
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
-    // Dark board background
     ctx.fillStyle = '#0d1117';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Inner center area
     const cW = canvas.width, cH = canvas.height;
     ctx.fillStyle = '#141928';
     ctx.fillRect(TILE_SIZE, TILE_SIZE, cW - 2*TILE_SIZE, cH - 2*TILE_SIZE);
 
-    // Decorative inner border
     ctx.strokeStyle = 'rgba(212, 175, 55, 0.2)';
     ctx.lineWidth = 2;
     ctx.strokeRect(TILE_SIZE + 16, TILE_SIZE + 16, cW - 2*TILE_SIZE - 32, cH - 2*TILE_SIZE - 32);
@@ -1260,15 +1296,15 @@ function draw() {
     ctx.fillStyle = '#0f766e';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText('PB', cW/2, cH/2 - 22);
+    ctx.fillText('PB', cW/2, cH/2 - (TILE_SIZE * 0.2));
     ctx.globalAlpha = 0.8;
     ctx.font = `600 ${TILE_SIZE * 0.22}px "Space Mono", monospace`;
     ctx.fillStyle = '#d4af37';
-    ctx.fillText('PRO·BUDS', cW/2, cH/2 + 32);
+    ctx.fillText('PRO·BUDS', cW/2, cH/2 + (TILE_SIZE * 0.3));
     ctx.globalAlpha = 0.4;
     ctx.font = `400 ${TILE_SIZE * 0.14}px "Space Mono", monospace`;
     ctx.fillStyle = '#ffffff';
-    ctx.fillText('MEGA TYCOON', cW/2, cH/2 + 52);
+    ctx.fillText('MEGA TYCOON', cW/2, cH/2 + (TILE_SIZE * 0.5));
     ctx.restore();
 
     tiles.forEach(t => drawTile(t));
@@ -1277,14 +1313,12 @@ function draw() {
 
 function drawTile(t) {
     const s = TILE_SIZE;
-    // Base fill
     ctx.fillStyle = '#1a1f35';
     ctx.fillRect(t.x, t.y, s, s);
     ctx.strokeStyle = 'rgba(255,255,255,0.08)';
     ctx.lineWidth = 1;
     ctx.strokeRect(t.x, t.y, s, s);
 
-    // Special tile backgrounds
     if (t.type === 'go')      { ctx.fillStyle = '#0f2a1e'; ctx.fillRect(t.x+1, t.y+1, s-2, s-2); }
     if (t.type === 'jail')    { ctx.fillStyle = '#1a1a2e'; ctx.fillRect(t.x+1, t.y+1, s-2, s-2); }
     if (t.type === 'gojail')  { ctx.fillStyle = '#2a0f0f'; ctx.fillRect(t.x+1, t.y+1, s-2, s-2); }
@@ -1293,21 +1327,42 @@ function drawTile(t) {
         ctx.fillStyle = '#1e1a2e'; ctx.fillRect(t.x+1, t.y+1, s-2, s-2);
     }
 
-    // Color band for property tiles
     if (t.group && GROUP_COLORS[t.group]) {
         const bandH = Math.floor(s * 0.22);
         ctx.fillStyle = GROUP_COLORS[t.group];
         ctx.fillRect(t.x, t.y, s, bandH);
-        if (t.owner !== null) {
-            // Ownership dot on band
-            ctx.fillStyle = players[t.owner].color;
-            ctx.beginPath();
-            ctx.arc(t.x + s/2, t.y + bandH/2, 5, 0, Math.PI*2);
-            ctx.fill();
+        
+        // Dynamic Houses & Hotels Drawing
+        if (t.hotel) {
+            ctx.fillStyle = '#ef4444'; 
+            const hw = s * 0.15;
+            ctx.fillRect(t.x + s/2 - hw/2, t.y + s*0.02, hw, bandH - s*0.04);
+            ctx.strokeStyle = '#fff'; ctx.lineWidth=1;
+            ctx.strokeRect(t.x + s/2 - hw/2, t.y + s*0.02, hw, bandH - s*0.04);
+        } else if (t.houses > 0) {
+            ctx.fillStyle = '#22c55e'; 
+            const hs = s * 0.08;
+            const gap = s * 0.02;
+            const totalW = (t.houses * hs) + ((t.houses - 1) * gap);
+            let startX = t.x + (s - totalW) / 2;
+            for(let i=0; i<t.houses; i++) {
+                ctx.fillRect(startX + i*(hs+gap), t.y + s*0.02, hs, hs);
+                ctx.strokeStyle = '#fff'; ctx.lineWidth=0.5;
+                ctx.strokeRect(startX + i*(hs+gap), t.y + s*0.02, hs, hs);
+            }
         }
     }
 
-    // Determine text area
+    if (t.owner !== null) {
+        ctx.fillStyle = players[t.owner].color;
+        ctx.beginPath();
+        ctx.arc(t.x + s - s*0.08, t.y + s - s*0.08, s*0.05, 0, Math.PI*2);
+        ctx.fill();
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+    }
+
     const band = t.group ? Math.floor(s * 0.22) : 0;
     const textAreaY = t.y + band;
     const textAreaH = s - band;
@@ -1316,126 +1371,121 @@ function drawTile(t) {
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
 
-    // Icons for special tiles
-    const iconMap = {
-        go: '💰', jail: '🏛', gojail: '🚔', parking: '🅿',
-        chance: '?', chest: '📦', rr: '✈', util: '⚡', tax: '💲'
-    };
-
     if (t.type === 'go') {
-        ctx.font = `bold 13px "Cormorant Garamond",serif`;
+        ctx.font = `bold ${s*0.15}px "Cormorant Garamond",serif`;
         ctx.fillStyle = '#d4af37';
-        ctx.fillText('GO', t.x + s/2, midY - 6);
-        ctx.font = `bold 8px "Space Mono",monospace`;
+        ctx.fillText('GO', t.x + s/2, midY - s*0.06);
+        ctx.font = `bold ${s*0.08}px "Space Mono",monospace`;
         ctx.fillStyle = '#0f766e';
-        ctx.fillText('+₱200', t.x + s/2, midY + 8);
+        ctx.fillText('+₱200', t.x + s/2, midY + s*0.08);
         return;
     }
     if (t.type === 'gojail') {
-        ctx.font = `18px sans-serif`;
-        ctx.fillText('🚔', t.x + s/2, midY - 6);
-        ctx.font = `bold 7px "Space Mono",monospace`;
+        ctx.font = `${s*0.2}px sans-serif`;
+        ctx.fillText('🚔', t.x + s/2, midY - s*0.06);
+        ctx.font = `bold ${s*0.07}px "Space Mono",monospace`;
         ctx.fillStyle = '#ef4444';
-        ctx.fillText('GO TO', t.x + s/2, midY + 7);
-        ctx.fillText('JAIL', t.x + s/2, midY + 16);
+        ctx.fillText('GO TO', t.x + s/2, midY + s*0.07);
+        ctx.fillText('JAIL', t.x + s/2, midY + s*0.16);
         return;
     }
     if (t.type === 'jail') {
-        ctx.font = `16px sans-serif`;
-        ctx.fillText('🏛', t.x + s/2, midY - 6);
-        ctx.font = `bold 6px "Space Mono",monospace`;
+        ctx.font = `${s*0.18}px sans-serif`;
+        ctx.fillText('🏛', t.x + s/2, midY - s*0.06);
+        ctx.font = `bold ${s*0.06}px "Space Mono",monospace`;
         ctx.fillStyle = '#94a3b8';
-        ctx.fillText('JUST', t.x + s/2, midY + 7);
-        ctx.fillText('VISITING', t.x + s/2, midY + 16);
+        ctx.fillText('JUST', t.x + s/2, midY + s*0.07);
+        ctx.fillText('VISITING', t.x + s/2, midY + s*0.16);
         return;
     }
     if (t.type === 'parking') {
-        ctx.font = `18px sans-serif`;
-        ctx.fillText('🌴', t.x + s/2, midY - 6);
-        ctx.font = `bold 6px "Space Mono",monospace`;
+        ctx.font = `${s*0.18}px sans-serif`;
+        ctx.fillText('🌴', t.x + s/2, midY - s*0.06);
+        ctx.font = `bold ${s*0.06}px "Space Mono",monospace`;
         ctx.fillStyle = '#22c55e';
-        ctx.fillText('FREE', t.x + s/2, midY + 7);
-        ctx.fillText('PARKING', t.x + s/2, midY + 16);
+        ctx.fillText('FREE', t.x + s/2, midY + s*0.07);
+        ctx.fillText('PARKING', t.x + s/2, midY + s*0.16);
         return;
     }
     if (t.type === 'chance') {
-        ctx.font = `bold 20px sans-serif`;
+        ctx.font = `bold ${s*0.22}px sans-serif`;
         ctx.fillStyle = '#a855f7';
-        ctx.fillText('?', t.x + s/2, midY - 2);
-        ctx.font = `bold 6px "Space Mono",monospace`;
+        ctx.fillText('?', t.x + s/2, midY - s*0.02);
+        ctx.font = `bold ${s*0.06}px "Space Mono",monospace`;
         ctx.fillStyle = '#c084fc';
-        ctx.fillText('SURPRISE', t.x + s/2, midY + 14);
+        ctx.fillText('SURPRISE', t.x + s/2, midY + s*0.14);
         return;
     }
     if (t.type === 'chest') {
-        ctx.font = `16px sans-serif`;
-        ctx.fillText('📦', t.x + s/2, midY - 4);
-        ctx.font = `bold 6px "Space Mono",monospace`;
+        ctx.font = `${s*0.18}px sans-serif`;
+        ctx.fillText('📦', t.x + s/2, midY - s*0.04);
+        ctx.font = `bold ${s*0.06}px "Space Mono",monospace`;
         ctx.fillStyle = '#f59e0b';
-        ctx.fillText('TREASURE', t.x + s/2, midY + 12);
+        ctx.fillText('TREASURE', t.x + s/2, midY + s*0.12);
         return;
     }
     if (t.type === 'rr') {
-        ctx.font = `16px sans-serif`;
-        ctx.fillText('✈', t.x + s/2, midY - 4);
-        ctx.font = `500 7px "DM Sans",sans-serif`;
+        ctx.font = `${s*0.18}px sans-serif`;
+        ctx.fillText('✈', t.x + s/2, midY - s*0.04);
+        ctx.font = `500 ${s*0.07}px "DM Sans",sans-serif`;
         ctx.fillStyle = '#e2e8f0';
         const nm = t.name.length > 9 ? t.name.substring(0,9) : t.name;
-        ctx.fillText(nm.toUpperCase(), t.x + s/2, midY + 8);
-        ctx.font = `500 7px "Space Mono",monospace`;
+        ctx.fillText(nm.toUpperCase(), t.x + s/2, midY + s*0.08);
+        ctx.font = `500 ${s*0.07}px "Space Mono",monospace`;
         ctx.fillStyle = '#a2d2df';
-        ctx.fillText('₱'+t.price, t.x + s/2, midY + 18);
+        ctx.fillText('₱'+t.price, t.x + s/2, midY + s*0.18);
         return;
     }
     if (t.type === 'util') {
-        ctx.font = `16px sans-serif`;
-        ctx.fillText(t.name.includes('Water') ? '🚿' : '⚡', t.x + s/2, midY - 4);
-        ctx.font = `500 7px "DM Sans",sans-serif`;
+        ctx.font = `${s*0.18}px sans-serif`;
+        ctx.fillText(t.name.includes('Water') ? '🚿' : '⚡', t.x + s/2, midY - s*0.04);
+        ctx.font = `500 ${s*0.07}px "DM Sans",sans-serif`;
         ctx.fillStyle = '#e2e8f0';
-        ctx.fillText(t.name.toUpperCase(), t.x + s/2, midY + 8);
-        ctx.font = `500 7px "Space Mono",monospace`;
+        ctx.fillText(t.name.toUpperCase(), t.x + s/2, midY + s*0.08);
+        ctx.font = `500 ${s*0.07}px "Space Mono",monospace`;
         ctx.fillStyle = '#a2d2df';
-        ctx.fillText('₱'+t.price, t.x + s/2, midY + 18);
+        ctx.fillText('₱'+t.price, t.x + s/2, midY + s*0.18);
         return;
     }
     if (t.type === 'tax') {
-        ctx.font = `16px sans-serif`;
-        ctx.fillText('💲', t.x + s/2, midY - 4);
-        ctx.font = `bold 6px "Space Mono",monospace`;
+        ctx.font = `${s*0.18}px sans-serif`;
+        ctx.fillText('💲', t.x + s/2, midY - s*0.04);
+        ctx.font = `bold ${s*0.06}px "Space Mono",monospace`;
         ctx.fillStyle = '#f87171';
-        ctx.fillText('TAX', t.x + s/2, midY + 8);
+        ctx.fillText('TAX', t.x + s/2, midY + s*0.08);
         return;
     }
 
-    // Property tile
     const maxLen = 9;
     let displayName = t.name.length > maxLen ? t.name.substring(0, maxLen) : t.name;
-    ctx.font = `600 ${s < 70 ? 6.5 : 7.5}px "DM Sans", sans-serif`;
+    ctx.font = `600 ${s*0.08}px "DM Sans", sans-serif`;
     ctx.fillStyle = '#e2e8f0';
-    ctx.fillText(displayName.toUpperCase(), t.x + s/2, midY + 2);
+    ctx.fillText(displayName.toUpperCase(), t.x + s/2, midY + s*0.02);
 
     if (t.price > 0) {
-        ctx.font = `500 7px "Space Mono", monospace`;
+        ctx.font = `500 ${s*0.07}px "Space Mono", monospace`;
         ctx.fillStyle = GROUP_COLORS[t.group] || '#a2d2df';
-        ctx.fillText('₱' + t.price, t.x + s/2, midY + 13);
+        ctx.fillText('₱' + t.price, t.x + s/2, midY + s*0.13);
     }
 }
 
 function drawPlayers() {
-    const offsets = [[-10,-10],[10,-10],[-10,10],[10,10]];
+    const s = TILE_SIZE;
+    const offsets = [[-s*0.1, -s*0.1], [s*0.1, -s*0.1], [-s*0.1, s*0.1], [s*0.1, s*0.1]];
     players.forEach((p, idx) => {
         if (p.cash < 0) return;
         const t = tiles[p.pos];
-        const cx = t.x + TILE_SIZE/2 + offsets[idx][0];
-        const cy = t.y + TILE_SIZE/2 + offsets[idx][1];
+        const cx = t.x + s/2 + offsets[idx][0];
+        const cy = t.y + s/2 + offsets[idx][1];
+        const r = s*0.09;
         
-        ctx.beginPath(); ctx.arc(cx, cy+1, 9, 0, Math.PI*2);
+        ctx.beginPath(); ctx.arc(cx, cy+1, r, 0, Math.PI*2);
         ctx.fillStyle = 'rgba(0,0,0,0.15)'; ctx.fill();
-        ctx.beginPath(); ctx.arc(cx, cy, 9, 0, Math.PI*2);
+        ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI*2);
         ctx.fillStyle = '#ffffff'; ctx.fill();
         ctx.lineWidth = 1.5; ctx.strokeStyle = p.color; ctx.stroke();
         
-        ctx.font = '11px sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+        ctx.font = `${s*0.11}px sans-serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
         ctx.fillStyle = p.color;
         ctx.fillText(p.token, cx, cy);
     });
@@ -1463,7 +1513,7 @@ async function executeTurn(pid) {
     document.getElementById('diceResult').innerText = roll;
     document.getElementById('diceEmoji').innerText = dieFaces[d1] + ' ' + dieFaces[d2];
 
-    log(`[${p.name}] Rolled ${roll} (${d1}+${d2})`, '#334155');
+    log(`[${p.name}] Rolled ${roll}`, '#334155');
 
     for (let i = 0; i < roll; i++) {
         p.pos = (p.pos + 1) % TOTAL;
@@ -1487,7 +1537,7 @@ function handleLanding(pid) {
         else      { p.cash -= amt; log(`Card Penalty: -₱${amt} 😬`, '#991b1b'); }
         endTurn(); return;
     }
-    if (t.type === 'tax') { p.cash -= 75; log(`[${p.name}] Paid Tax ₱75 💸`, '#991b1b'); endTurn(); return; }
+    if (t.type === 'tax') { p.cash -= 75; log(`[${p.name}] Paid Tax ₱75 💸`, '#991b1b'); checkBankruptcy(pid); endTurn(); return; }
 
     if (t.price > 0) {
         if (t.owner === null) {
@@ -1498,10 +1548,30 @@ function handleLanding(pid) {
             } else { showBuyModal(t); }
         } else if (t.owner !== pid) {
             const owner = players[t.owner];
-            log(`[${p.name}] Pays rent ₱${t.rent} to ${owner.name} 💸`, '#991b1b');
-            p.cash -= t.rent; owner.cash += t.rent;
+            const rentToPay = getRent(t); 
+            log(`[${p.name}] Pays rent ₱${rentToPay} to ${owner.name} 💸`, '#991b1b');
+            p.cash -= rentToPay; owner.cash += rentToPay;
             checkBankruptcy(pid); endTurn();
-        } else endTurn();
+        } else {
+            // Landed on OWN property
+            if (t.type === 'prop' && !t.hotel) {
+                if (pid === 0) {
+                    showBuildModal(t);
+                    return; // Wait for human input
+                } else {
+                    // Bot logic to upgrade on landing
+                    if (p.cash > (t.price * 0.5) + 200) {
+                        buyUpgrade(pid, t);
+                    } else {
+                        log(`[${p.name}] Rests at ${t.name}`, '#64748b');
+                    }
+                    endTurn();
+                }
+            } else {
+                log(`[${p.name}] Rests at ${t.name}`, '#64748b');
+                endTurn();
+            }
+        }
     } else endTurn();
     updateUI();
 }
@@ -1510,7 +1580,7 @@ function showBuyModal(tile) {
     waitingForInput = true;
     document.getElementById('buyTitle').innerText = tile.name;
     document.getElementById('buyPrice').innerText = tile.price;
-    document.getElementById('buyRent').innerText = tile.rent;
+    document.getElementById('buyRent').innerText = getRent(tile); 
     document.getElementById('rollBtn').classList.add('hidden');
     document.getElementById('buyModal').classList.remove('hidden');
     document.getElementById('turnIndicator').classList.add('hidden');
@@ -1525,6 +1595,59 @@ function buyProperty() {
 
 function passProperty() { log("Passed on " + tiles[players[0].pos].name); closeBuyModal(); endTurn(); }
 function closeBuyModal() { document.getElementById('buyModal').classList.add('hidden'); waitingForInput = false; }
+
+function showBuildModal(tile) {
+    waitingForInput = true;
+    document.getElementById('rollBtn').classList.add('hidden');
+    document.getElementById('turnIndicator').classList.add('hidden');
+    document.getElementById('buyModal').classList.add('hidden');
+    
+    const cost = Math.floor(tile.price * 0.5);
+    let nextR = getNextRent(tile);
+    let typeStr = tile.houses < 4 ? "HOUSE 🏠" : "HOTEL 🏨";
+    
+    document.getElementById('buildSubtitle').innerText = "Upgrade " + typeStr;
+    document.getElementById('buildTitle').innerText = tile.name;
+    document.getElementById('buildCost').innerText = cost;
+    document.getElementById('buildRent').innerText = nextR;
+    
+    document.getElementById('buildModal').classList.remove('hidden');
+    
+    document.getElementById('btnConfirmBuild').onclick = function() {
+        if (players[0].cash >= cost) {
+            buyUpgrade(0, tile);
+            document.getElementById('buildModal').classList.add('hidden');
+            waitingForInput = false;
+            endTurn();
+        } else {
+            log("Insufficient funds to build.", "#991b1b");
+            document.getElementById('buildModal').classList.add('hidden');
+            waitingForInput = false;
+            endTurn();
+        }
+    };
+}
+
+function skipBuild() {
+    log("Passed on upgrading.", "#64748b");
+    document.getElementById('buildModal').classList.add('hidden');
+    waitingForInput = false;
+    endTurn();
+}
+
+function buyUpgrade(pid, tile) {
+    const cost = Math.floor(tile.price * 0.5);
+    players[pid].cash -= cost;
+    if (tile.houses < 4) {
+        tile.houses++;
+        log(`[${players[pid].name}] Built a house on ${tile.name} 🏠`, pid===0 ? '#0f766e' : '#d4af37');
+    } else {
+        tile.houses = 0;
+        tile.hotel = true;
+        log(`[${players[pid].name}] Built a HOTEL on ${tile.name} 🏨`, pid===0 ? '#0f766e' : '#d4af37');
+    }
+    updateUI(); draw();
+}
 
 function buyProp(pid, tile) {
     const p = players[pid];
@@ -1541,14 +1664,23 @@ function openSellMenu() {
     } else {
         p.props.forEach(idx => {
             const t = tiles[idx];
-            const val = Math.floor(t.price * 0.5);
+            let totalInvested = t.price + (t.houses * Math.floor(t.price * 0.5)) + (t.hotel ? 5 * Math.floor(t.price * 0.5) : 0);
+            const val = Math.floor(totalInvested * 0.5);
             const col = t.group ? GROUP_COLORS[t.group] : '#94a3b8';
+            
+            // Build buttons have been removed from here! You can only sell from this menu now.
+
             list.innerHTML += `<div class="flex justify-between items-center bg-gray-50 p-3 rounded border border-gray-200">
                 <div class="flex items-center gap-3">
                     <span class="w-3 h-3 rounded-full flex-shrink-0 shadow-sm" style="background:${col}"></span>
-                    <span class="text-brand-deep text-xs font-bold font-display uppercase tracking-widest">${t.name}</span>
+                    <div>
+                        <div class="text-brand-deep text-xs font-bold font-display uppercase tracking-widest">${t.name}</div>
+                        <div class="text-[9px] text-gray-500 font-mono mt-0.5">Rent: ₱${getRent(t)} | Status: ${t.hotel ? 'HOTEL' : t.houses + ' Houses'}</div>
+                    </div>
                 </div>
-                <button onclick="sellAsset(${t.index},${val})" class="bg-white border border-brand-deep text-brand-deep hover:bg-brand-deep hover:text-white text-[10px] px-4 py-1.5 rounded font-bold transition uppercase tracking-widest font-mono">Sell ₱${val}</button>
+                <div class="flex items-center">
+                    <button onclick="sellAsset(${t.index},${val})" class="bg-white border border-brand-deep text-brand-deep hover:bg-brand-deep hover:text-white text-[10px] px-3 py-1.5 rounded font-bold transition uppercase tracking-widest font-mono">Sell ₱${val}</button>
+                </div>
             </div>`;
         });
     }
@@ -1557,7 +1689,8 @@ function openSellMenu() {
 
 function sellAsset(tileIdx, val) {
     const p = players[0]; const t = tiles[tileIdx];
-    t.owner = null; p.props = p.props.filter(id => id !== tileIdx);
+    t.owner = null; t.houses = 0; t.hotel = false; 
+    p.props = p.props.filter(id => id !== tileIdx);
     p.cash += val; log(`Liquidated ${t.name} (+₱${val}) 💰`, '#0f766e');
     updateUI(); draw(); openSellMenu();
 }
@@ -1566,6 +1699,7 @@ function closeSellMenu() { document.getElementById('sellModal').classList.add('h
 
 function endTurn() {
     updateUI(); checkWin();
+
     turn = (turn + 1) % 4;
     let attempts = 0;
     while (players[turn].cash < 0 && attempts < 4) { turn = (turn+1)%4; attempts++; }
@@ -1588,7 +1722,11 @@ function endTurn() {
 function checkBankruptcy(id) {
     if (players[id].cash < 0) {
         log(`⚠ ${players[id].name} is BANKRUPT!`, '#991b1b');
-        players[id].props.forEach(idx => { tiles[idx].owner = null; });
+        players[id].props.forEach(idx => { 
+            tiles[idx].owner = null; 
+            tiles[idx].houses = 0;
+            tiles[idx].hotel = false;
+        });
         players[id].props = []; draw();
     }
 }

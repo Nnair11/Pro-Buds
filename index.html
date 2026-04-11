@@ -756,19 +756,19 @@
                 </div>
                 <div id="card-1" class="bg-white p-4 rounded border border-gray-200 shadow-sm transition-all opacity-70">
                     <div class="flex justify-between font-bold text-brand-gold text-sm border-b border-gray-100 pb-2">
-                        <span>BotReyes</span><span class="font-display text-lg">₱<span id="cash-1">1500</span></span>
+                        <span>Bot1</span><span class="font-display text-lg">₱<span id="cash-1">1500</span></span>
                     </div>
                     <div class="text-[10px] text-gray-500 mt-2 font-mono uppercase tracking-widest">Properties: <span id="props-1" class="text-brand-deep font-bold">0</span></div>
                 </div>
                 <div id="card-2" class="bg-white p-4 rounded border border-gray-200 shadow-sm transition-all opacity-70">
                     <div class="flex justify-between font-bold text-brand-deep text-sm border-b border-gray-100 pb-2">
-                        <span>BotSantos</span><span class="font-display text-lg">₱<span id="cash-2">1500</span></span>
+                        <span>Bot2</span><span class="font-display text-lg">₱<span id="cash-2">1500</span></span>
                     </div>
                     <div class="text-[10px] text-gray-500 mt-2 font-mono uppercase tracking-widest">Properties: <span id="props-2" class="text-brand-deep font-bold">0</span></div>
                 </div>
                 <div id="card-3" class="bg-white p-4 rounded border border-gray-200 shadow-sm transition-all opacity-70">
                     <div class="flex justify-between font-bold text-slate-500 text-sm border-b border-gray-100 pb-2">
-                        <span>BotCruz</span><span class="font-display text-lg">₱<span id="cash-3">1500</span></span>
+                        <span>Bot3</span><span class="font-display text-lg">₱<span id="cash-3">1500</span></span>
                     </div>
                     <div class="text-[10px] text-gray-500 mt-2 font-mono uppercase tracking-widest">Properties: <span id="props-3" class="text-brand-deep font-bold">0</span></div>
                 </div>
@@ -1142,7 +1142,7 @@ function filterProps(status, btn) {
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 const SIDE = 11;
-const TILE_SIZE = 65;
+const TILE_SIZE = 100;
 canvas.width = TILE_SIZE * SIDE;
 canvas.height = TILE_SIZE * SIDE;
 const TOTAL = 40;
@@ -1203,9 +1203,9 @@ const tileData = [
 
 let players = [
     { id:0, name:"You",      color:"#0f766e", token:"♟", cash:1500, pos:0, props:[], isBot:false },
-    { id:1, name:"BotReyes", color:"#d4af37", token:"♞", cash:1500, pos:0, props:[], isBot:true  },
-    { id:2, name:"BotSantos",color:"#042f2e", token:"♜", cash:1500, pos:0, props:[], isBot:true  },
-    { id:3, name:"BotCruz",  color:"#94a3b8", token:"♝", cash:1500, pos:0, props:[], isBot:true  },
+    { id:1, name:"Bot1", color:"#d4af37", token:"♞", cash:1500, pos:0, props:[], isBot:true  },
+    { id:2, name:"Bot2",color:"#042f2e", token:"♜", cash:1500, pos:0, props:[], isBot:true  },
+    { id:3, name:"Bot3",  color:"#94a3b8", token:"♝", cash:1500, pos:0, props:[], isBot:true  },
 ];
 
 let tiles = [];

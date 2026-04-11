@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Pro·Buds</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { teal: '#0f766e', deep: '#042f2e', light: '#f0fdfa', gold: '#d4af37', champagne: '#f7e7ce', cream: '#faf7f2' }
+                    },
+                    fontFamily: { display: ['"Cormorant Garamond"', 'serif'], sans: ['"DM Sans"', 'sans-serif'], mono: ['"Space Mono"', 'monospace'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root { --teal:#0f766e; --deep-teal:#042f2e; --gold:#d4af37; --cream:#faf7f2; }
+        html { scroll-behavior: smooth; }
+        body { background:#fff; color:#334155; }
+        ::selection { background:rgba(212,175,55,.3); color:#042f2e; }
+
+        .nav-link { position:relative; letter-spacing:.04em; color:#475569; }
+        .nav-link::after { content:''; position:absolute; bottom:-4px; left:0; width:0; height:1.5px; background:var(--gold); transition:width .35s cubic-bezier(.4,0,.2,1); }
+        .nav-link:hover::after { width:100%; }
+        .nav-link:hover { color:var(--teal); }
+        .nav-active { color:var(--teal); font-weight:700; }
+        .nav-active::after { content:''; position:absolute; bottom:-4px; left:0; width:100%; height:1.5px; background:var(--gold); }
+
+        .section-label { font-family:'Space Mono',monospace; font-size:.65rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); display:inline-flex; align-items:center; gap:8px; }
+        .section-label::before { content:''; width:28px; height:1px; background:var(--gold); }
+
+        .reveal { opacity:0; transform:translateY(28px); transition:opacity .75s cubic-bezier(.4,0,.2,1), transform .75s cubic-bezier(.4,0,.2,1); }
+        .revealed { opacity:1; transform:translateY(0); }
+
+        .timeline-item::before { content:''; position:absolute; left:-1px; top:0; bottom:0; width:1px; background:linear-gradient(to bottom, var(--gold), var(--teal)); }
+        .team-card { transition:transform .4s, box-shadow .4s, border-color .4s; border:1px solid #f1f5f9; }
+        .team-card:hover { transform:translateY(-6px); box-shadow:0 20px 40px rgba(15,118,110,.08); border-color:rgba(212,175,55,.3); }
+        .value-card { border:1px solid #f1f5f9; transition:all .4s; }
+        .value-card:hover { border-color:var(--gold); box-shadow:0 8px 30px rgba(15,118,110,.07); transform:translateY(-3px); }
+        .value-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg, var(--gold), var(--teal)); opacity:0; transition:opacity .4s; }
+        .value-card:hover::before { opacity:1; }
+
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+<!-- NAV — matching index.html exactly -->
+<nav class="bg-white/95 backdrop-blur-md shadow-sm fixed w-full z-50 border-b border-gray-100">
+    <div class="container mx-auto px-6 py-4 flex justify-end items-center gap-8">
+        <a href="index.html" class="flex items-center space-x-3 group flex-1">
+            <div class="w-10 h-10 rounded bg-brand-deep flex items-center justify-center border border-brand-gold/30 transition group-hover:bg-brand-teal">
+                <img src="https://static.wixstatic.com/media/9deb48_0509776481944aa986f7fb37374e638a~mv2.png/v1/fill/w_431,h_333,al_c,lg_1,q_85,enc_avif,quality_auto/E%26E%20Gold%20Edit.png">
+            </div>
+            <div>
+                <span class="text-xl font-bold tracking-tight text-brand-deep font-display">Pro·Buds</span>
+                <span class="hidden sm:block text-[9px] text-gray-500 -mt-0.5 leading-none font-mono tracking-widest uppercase">Property Co. of Buddies</span>
+            </div>
+        </a>
+        <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
+            <a href="index.html" class="nav-link transition">Home</a>
+            <a href="#" class="nav-link nav-active transition">About</a>
+            <a href="properties.html" class="nav-link transition">Properties</a>
+            <a href="services.html" class="nav-link transition">Services</a>
+        </div>
+        <div class="flex items-center gap-3">
+            <a href="contact.html" class="hidden md:inline-block bg-brand-deep text-white px-6 py-2.5 font-semibold text-xs shadow hover:bg-brand-teal transition tracking-wide">
+                Get In Touch
+            </a>
+            <button id="menuBtn" class="md:hidden p-2 rounded hover:bg-gray-50 transition" onclick="toggleMenu()">
+                <svg class="w-5 h-5 text-brand-deep" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<header id="story" class="pt-36 pb-24 relative overflow-hidden" style="background:linear-gradient(145deg,#ffffff 0%,var(--cream) 100%)">
+    <div class="absolute top-0 right-0 w-[600px] h-[600px] rounded-full -mr-48 -mt-48 pointer-events-none" style="background:radial-gradient(circle, rgba(212,175,55,0.07), transparent 70%)"></div>
+    <div class="absolute bottom-0 left-0 w-96 h-96 rounded-full -ml-32 -mb-32 pointer-events-none" style="background:radial-gradient(circle, rgba(15,118,110,0.06), transparent 70%)"></div>
+    <div class="container mx-auto px-6 text-center relative z-10">
+        <div class="section-label mb-5 justify-center">Our Story</div>
+        <h1 class="font-display text-5xl md:text-7xl font-bold text-brand-deep mb-6 leading-tight">More Than Brokers,<br><em class="text-brand-teal italic">We're Your Buddies.</em></h1>
+        <p class="max-w-2xl mx-auto text-gray-500 leading-relaxed text-lg">Founded on the belief that every Filipino family deserves a trusted partner in their property journey Pro·Buds has delivered over 64,000 homes and counting.</p>
+        <div class="flex flex-wrap justify-center gap-12 mt-14 border-t border-gray-100 pt-12">
+            <div class="text-center">
+                <div class="font-display text-5xl font-bold text-brand-deep">27<span class="text-brand-gold">+</span></div>
+                <div class="font-mono text-[10px] text-gray-400 tracking-widest uppercase mt-1">Years in Business</div>
+            </div>
+            <div class="text-center">
+                <div class="font-display text-5xl font-bold text-brand-deep">64<span class="text-brand-gold">K</span></div>
+                <div class="font-mono text-[10px] text-gray-400 tracking-widest uppercase mt-1">Families Served</div>
+            </div>
+            <div class="text-center">
+                <div class="font-display text-5xl font-bold text-brand-deep">300<span class="text-brand-gold">+</span></div>
+                <div class="font-mono text-[10px] text-gray-400 tracking-widest uppercase mt-1">Buddy Agents</div>
+            </div>
+            <div class="text-center">
+                <div class="font-display text-5xl font-bold text-brand-deep">18</div>
+                <div class="font-mono text-[10px] text-gray-400 tracking-widest uppercase mt-1">Provinces Covered</div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- PHILOSOPHY -->
+<section id="philosophy" class="py-28">
+    <div class="container mx-auto px-6 grid md:grid-cols-2 gap-20 items-center">
+        <div class="reveal">
+            <div class="section-label mb-5">Philosophy</div>
+            <h2 class="font-display text-4xl md:text-5xl font-bold text-brand-deep mb-6">The Buddy-First<br>Way of Doing Business</h2>
+            <p class="text-gray-600 mb-6 leading-relaxed">In 1998, our founder Carlo Medrano saw a gap in Philippine real estate: agents who sold property but never truly served people. He left a prestigious brokerage firm and launched Pro·Buds from a small office in Imus, Cavite with nothing but a list of 12 clients and a radical idea: treat every buyer like your closest friend.</p>
+            <p class="text-gray-600 mb-8 leading-relaxed">That philosophy grew into a company with over 300 licensed buddy-agents covering 18 provinces. The name changed. The office moved. But the core never wavered.</p>
+            <div class="space-y-5">
+                <div class="flex items-start gap-5 p-5 rounded-xl bg-brand-light/50 border border-brand-teal/10">
+                    <span class="text-brand-gold font-bold font-mono text-2xl leading-none mt-1">01.</span>
+                    <div>
+                        <h4 class="font-bold text-brand-deep mb-1">Radical Transparency</h4>
+                        <p class="text-sm text-gray-500 leading-relaxed">We share every detail hidden costs, long-term projections, even market downturn risks. You deserve the full picture, not just the glossy brochure.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-5 p-5 rounded-xl bg-brand-light/50 border border-brand-teal/10">
+                    <span class="text-brand-gold font-bold font-mono text-2xl leading-none mt-1">02.</span>
+                    <div>
+                        <h4 class="font-bold text-brand-deep mb-1">Hyperlocal Knowledge</h4>
+                        <p class="text-sm text-gray-500 leading-relaxed">Our buddies live where they sell. They know which barangay floods, which street has the best school access, and where the next commercial hub is rising.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-5 p-5 rounded-xl bg-brand-light/50 border border-brand-teal/10">
+                    <span class="text-brand-gold font-bold font-mono text-2xl leading-none mt-1">03.</span>
+                    <div>
+                        <h4 class="font-bold text-brand-deep mb-1">Lifetime Relationship</h4>
+                        <p class="text-sm text-gray-500 leading-relaxed">We don't close deals and disappear. Our post-sale support team, property managers, and annual check-ins keep us in your corner long after you've moved in.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="reveal" style="transition-delay:.15s">
+            <div class="bg-brand-deep rounded-2xl p-12 text-white relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-48 h-48 rounded-full -mr-20 -mt-20 pointer-events-none" style="background:radial-gradient(circle, rgba(212,175,55,0.12), transparent 70%)"></div>            
+                <div class="absolute bottom-0 left-0 w-40 h-40 rounded-full -ml-16 -mb-16 pointer-events-none" style="background:radial-gradient(circle, rgba(15,118,110,0.15), transparent 70%)"></div>
+                <div class="relative z-10">
+                    <div class="font-mono text-[10px] text-brand-gold tracking-widest uppercase mb-3">Our Mission</div>
+                    <h3 class="font-display text-3xl font-bold mb-6 text-white">What We Stand For</h3>
+                    <blockquote class="italic text-lg mb-8 border-l-2 border-brand-teal pl-6 font-display text-white/90 leading-relaxed">"To empower every Filipino family to find, own, and invest in property through honest, client-centered real estate services delivered with warmth and trust."</blockquote>
+                    <div class="space-y-3 border-t border-white/10 pt-8">
+                        <div class="flex items-start gap-3">
+                            <span class="w-5 h-5 rounded-full bg-brand-teal/30 flex items-center justify-center text-brand-teal text-xs mt-0.5 flex-shrink-0">✓</span>
+                            <p class="text-white/70 text-sm">Accessible, unbiased counsel regardless of your budget</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="w-5 h-5 rounded-full bg-brand-teal/30 flex items-center justify-center text-brand-teal text-xs mt-0.5 flex-shrink-0">✓</span>
+                            <p class="text-white/70 text-sm">A simplified, transparent acquisition process every time</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="w-5 h-5 rounded-full bg-brand-teal/30 flex items-center justify-center text-brand-teal text-xs mt-0.5 flex-shrink-0">✓</span>
+                            <p class="text-white/70 text-sm">Lasting relationships that extend far beyond the transaction</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+             <div class="bg-brand-deep rounded-2xl p-12 text-white relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-48 h-48 rounded-full -mr-20 -mt-20 pointer-events-none" style="background:radial-gradient(circle, rgba(212,175,55,0.12), transparent 70%)"></div>            
+                <div class="absolute bottom-0 left-0 w-40 h-40 rounded-full -ml-16 -mb-16 pointer-events-none" style="background:radial-gradient(circle, rgba(15,118,110,0.15), transparent 70%)"></div>
+                <div class="relative z-10">
+                    <div class="font-mono text-[10px] text-brand-gold tracking-widest uppercase mb-3">Our Vision</div>
+                    <h3 class="font-display text-3xl font-bold mb-6 text-white">Where We're Headed</h3>
+                    <blockquote class="italic text-lg mb-8 border-l-2 border-brand-teal pl-6 font-display text-white/90 leading-relaxed">"To become the Philippines' most trusted real estate companya national network where every community has a Pro·Buds partner, making property accessible, aspirational, and attainable."</blockquote>
+                    <div class="space-y-3 border-t border-white/10 pt-8">
+                        <div class="flex items-start gap-3">
+                            <span class="w-5 h-5 rounded-full bg-brand-teal/30 flex items-center justify-center text-brand-teal text-xs mt-0.5 flex-shrink-0">✓</span>
+                            <p class="text-white/70 text-sm">Expand presence to every major Philippine city by 2030</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="w-5 h-5 rounded-full bg-brand-teal/30 flex items-center justify-center text-brand-teal text-xs mt-0.5 flex-shrink-0">✓</span>
+                            <p class="text-white/70 text-sm">Digitize the full purchase journey for seamless OFW investing</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="w-5 h-5 rounded-full bg-brand-teal/30 flex items-center justify-center text-brand-teal text-xs mt-0.5 flex-shrink-0">✓</span>
+                            <p class="text-white/70 text-sm">Develop 100,000 affordable housing units in partnership with LGUs</p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TIMELINE -->
+<section id="journey" class="py-24 bg-brand-deep relative overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none opacity-5" style="background-image:linear-gradient(rgba(255,255,255,.2) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.2) 1px,transparent 1px);background-size:40px 40px;"></div>
+    <div class="container mx-auto px-6 relative z-10">
+        <div class="text-center mb-16 reveal">
+            <div class="section-label mb-4 justify-center">Our Journey</div>
+            <h2 class="font-display text-4xl md:text-5xl font-bold text-white">27 Years of <em class="text-brand-gold italic">Trust</em></h2>
+        </div>
+        <div class="max-w-4xl mx-auto">
+            <div class="relative pl-10 border-l-2 border-brand-gold/20 space-y-12">
+                <div class="relative reveal">
+                    <div class="absolute -left-[2.6rem] top-1 w-5 h-5 rounded-full bg-brand-gold border-4 border-brand-deep"></div>
+                    <div class="font-mono text-xs text-brand-gold mb-1">1998</div>
+                    <h3 class="font-display text-2xl font-bold text-white mb-2">The First Office</h3>
+                    <p class="text-white/60 text-sm leading-relaxed">Carlo Medrano opens a 12-sqm office in Imus, Cavite, with a borrowed desk, a landline phone, and the conviction that real estate agents should act like trusted friends not just salespeople. First 12 clients become lifelong advocates.</p>
+                </div>
+                <div class="relative reveal" style="transition-delay:.1s">
+                    <div class="absolute -left-[2.6rem] top-1 w-5 h-5 rounded-full bg-brand-teal border-4 border-brand-deep"></div>
+                    <div class="font-mono text-xs text-brand-gold mb-1">2003</div>
+                    <h3 class="font-display text-2xl font-bold text-white mb-2">PRC Accreditation & Expansion</h3>
+                    <p class="text-white/60 text-sm leading-relaxed">Pro·Buds earns full PRC and HLURB accreditation. The team grows to 40 agents. The Cavite network expands to Bacoor, Dasmariñas, and General Trias, and the first partnership with Ayala Land Premier is inked.</p>
+                </div>
+                <div class="relative reveal" style="transition-delay:.2s">
+                    <div class="absolute -left-[2.6rem] top-1 w-5 h-5 rounded-full bg-brand-gold border-4 border-brand-deep"></div>
+                    <div class="font-mono text-xs text-brand-gold mb-1">2010</div>
+                    <h3 class="font-display text-2xl font-bold text-white mb-2">10,000 Families Milestone</h3>
+                    <p class="text-white/60 text-sm leading-relaxed">A landmark year: Pro·Buds serves its 10,000th family. Coverage expands to Laguna, Batangas, and Metro Manila. The OFW investment program launches, allowing overseas Filipinos to buy property remotely with a dedicated buddy agent.</p>
+                </div>
+                <div class="relative reveal" style="transition-delay:.3s">
+                    <div class="absolute -left-[2.6rem] top-1 w-5 h-5 rounded-full bg-brand-teal border-4 border-brand-deep"></div>
+                    <div class="font-mono text-xs text-brand-gold mb-1">2018</div>
+                    <h3 class="font-display text-2xl font-bold text-white mb-2">Digital Transformation</h3>
+                    <p class="text-white/60 text-sm leading-relaxed">Pro·Buds launches its digital platform virtual property tours, e-signature reservations, and online loan tracking. In one year, 35% of all transactions are initiated online. Named one of PropTech Philippines' top innovators.</p>
+                </div>
+                <div class="relative reveal" style="transition-delay:.4s">
+                    <div class="absolute -left-[2.6rem] top-1 w-5 h-5 rounded-full bg-brand-gold border-4 border-brand-deep"></div>
+                    <div class="font-mono text-xs text-brand-gold mb-1">2026</div>
+                    <h3 class="font-display text-2xl font-bold text-white mb-2">64,000 Families & Growing</h3>
+                    <p class="text-white/60 text-sm leading-relaxed">Today, Pro·Buds operates across 18 provinces with 300+ agents and a growing tech team. We've served 64,000 families and are on track to reach 100,000 by 2030 While staying true to the buddy-first promise that started it all.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CORE VALUES -->
+<section id="values" class="py-24 bg-brand-cream" style="background:var(--cream)">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-16 reveal">
+            <div class="section-label mb-4 justify-center">What Guides Us</div>
+            <h2 class="font-display text-4xl md:text-5xl font-bold text-brand-deep">Our Core <em class="text-brand-gold italic">Values</em></h2>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="value-card relative bg-white p-8 rounded-2xl overflow-hidden reveal">
+                <h3 class="font-display text-xl font-bold text-brand-deep mb-3">Integrity</h3>
+                <p class="text-sm text-gray-500 leading-relaxed">We say what we mean, mean what we say, and never cut corners even when no one is watching. Full disclosure is our non-negotiable standard.</p>
+            </div>
+            <div class="value-card relative bg-white p-8 rounded-2xl overflow-hidden reveal" style="transition-delay:.05s">
+                <h3 class="font-display text-xl font-bold text-brand-deep mb-3">Empathy</h3>
+                <p class="text-sm text-gray-500 leading-relaxed">Buying a home is deeply emotional. We listen before we speak, understand before we advise, and never rush you toward a decision you're not ready for.</p>
+            </div>
+            <div class="value-card relative bg-white p-8 rounded-2xl overflow-hidden reveal" style="transition-delay:.1s">
+                <h3 class="font-display text-xl font-bold text-brand-deep mb-3">Excellence</h3>
+                <p class="text-sm text-gray-500 leading-relaxed">Good enough is never enough. Every document, every viewing, every follow-up call is done with care, precision, and a drive to exceed expectations.</p>
+            </div>
+            <div class="value-card relative bg-white p-8 rounded-2xl overflow-hidden reveal" style="transition-delay:.15s">
+                <h3 class="font-display text-xl font-bold text-brand-deep mb-3">Growth Mindset</h3>
+                <p class="text-sm text-gray-500 leading-relaxed">We invest in our agents' development, our clients' futures, and the communities where we operate. Stagnation is not in our vocabulary.</p>
+            </div>
+            <div class="value-card relative bg-white p-8 rounded-2xl overflow-hidden reveal" style="transition-delay:.2s">
+                <h3 class="font-display text-xl font-bold text-brand-deep mb-3">Community</h3>
+                <p class="text-sm text-gray-500 leading-relaxed">We build more than houses we strengthen neighborhoods. A portion of every closed deal goes to our Bahay Para sa Lahat community housing fund.</p>
+            </div>
+            <div class="value-card relative bg-white p-8 rounded-2xl overflow-hidden reveal" style="transition-delay:.25s">
+                <h3 class="font-display text-xl font-bold text-brand-deep mb-3">Innovation</h3>
+                <p class="text-sm text-gray-500 leading-relaxed">From virtual tours to AI-powered market analytics, we embrace technology that makes property ownership more accessible and less stressful for everyone.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="py-24 bg-brand-deep text-white text-center relative overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse at 30% 50%, rgba(212,175,55,.07), transparent 60%), radial-gradient(ellipse at 80% 40%, rgba(15,118,110,.12), transparent 50%)"></div>
+    <div class="container mx-auto px-6 relative z-10 reveal">
+        <div class="section-label mb-5 justify-center">Join Our Journey</div>
+        <h2 class="font-display text-4xl md:text-5xl font-bold mb-6">Ready to Find Your <em class="text-brand-gold italic">Forever Home?</em></h2>
+        <p class="max-w-lg mx-auto text-white/60 mb-10 leading-relaxed">Join 64,000+ families who trusted a buddy over a broker. Let's start your property journey together today.</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="contact.html" class="bg-brand-gold text-brand-deep px-10 py-4 font-bold text-sm tracking-wide hover:bg-yellow-400 transition shadow-xl">Talk to a Buddy</a>
+            <a href="properties.html" class="border border-white/30 text-white px-10 py-4 font-bold text-sm tracking-wide hover:bg-white/10 transition">Browse Properties</a>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-[#021817] text-gray-400 py-16 border-t border-brand-gold/20">
+    <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12 border-b border-gray-800 pb-12">
+            <div class="md:col-span-2">
+                <div class="flex items-center space-x-3 mb-6">
+                    <div class="w-10 h-10 rounded border border-brand-gold/30 flex items-center justify-center text-brand-gold font-bold">
+                        <img src="https://static.wixstatic.com/media/9deb48_0509776481944aa986f7fb37374e638a~mv2.png/v1/fill/w_431,h_333,al_c,lg_1,q_85,enc_avif,quality_auto/E%26E%20Gold%20Edit.png">
+                    </div>
+                    <div>
+                        <span class="text-xl font-bold text-white font-display">Pro·Buds</span>
+                        <p class="text-[10px] text-gray-500 font-mono tracking-widest uppercase mt-0.5">Property Company of Buddies</p>
+                    </div>
+                </div>
+                <p class="text-gray-500 text-sm leading-relaxed max-w-sm">Creating communities, transforming livesone property at a time. Your trusted real estate buddy across the Philippines.</p>
+            </div>
+            <div>
+                <div class="text-[10px] font-mono text-brand-gold uppercase tracking-widest mb-5">Quick Links</div>
+                <div class="space-y-3 text-sm">
+                    <a href="#story" class="block hover:text-brand-gold transition">Our Story</a>
+                    <a href="#philosophy" class="block hover:text-brand-gold transition">Philosophy</a>
+                    <a href="#journey" class="block hover:text-brand-gold transition">Journey</a>
+                    <a href="#values" class="block hover:text-brand-gold transition">Core Values</a>
+                </div>
+            </div>
+            <div>
+                <div class="text-[10px] font-mono text-brand-gold uppercase tracking-widest mb-5">Pro·Buds</div>
+                <div class="space-y-3 text-sm">
+                    <a href="index.html" class="block hover:text-brand-gold transition">Home</a>
+                    <a href="properties.html" class="block hover:text-brand-gold transition">Properties</a>
+                    <a href="services.html" class="block hover:text-brand-gold transition">Services</a>
+                    <a href="contact.html" class="block hover:text-brand-gold transition">Contact Us</a>
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-600 font-mono uppercase tracking-widest">
+            <p>© 2026 Pro·Buds, Inc. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+
+<script>
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

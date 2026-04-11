@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services | Pro·Buds</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { brand: { teal: '#0f766e', deep: '#042f2e', light: '#f0fdfa', gold: '#d4af37', cream: '#faf7f2' } },
+                    fontFamily: { display: ['"Cormorant Garamond"', 'serif'], sans: ['"DM Sans"', 'sans-serif'], mono: ['"Space Mono"', 'monospace'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root { --teal:#0f766e; --deep-teal:#042f2e; --gold:#d4af37; --cream:#faf7f2; }
+        html { scroll-behavior:smooth; }
+        body { background:#fff; color:#334155; }
+        ::selection { background:rgba(212,175,55,.3); color:#042f2e; }
+
+        .nav-link { position:relative; letter-spacing:.04em; color:#475569; }
+        .nav-link::after { content:''; position:absolute; bottom:-4px; left:0; width:0; height:1.5px; background:var(--gold); transition:width .35s cubic-bezier(.4,0,.2,1); }
+        .nav-link:hover::after { width:100%; }
+        .nav-link:hover { color:var(--teal); }
+        .nav-active { color:var(--teal); font-weight:700; position:relative; }
+        .nav-active::after { content:''; position:absolute; bottom:-4px; left:0; width:100%; height:1.5px; background:var(--gold); }
+
+        .section-label { font-family:'Space Mono',monospace; font-size:.65rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); display:inline-flex; align-items:center; gap:8px; }
+        .section-label::before { content:''; width:28px; height:1px; background:var(--gold); }
+
+        .reveal { opacity:0; transform:translateY(28px); transition:opacity .75s cubic-bezier(.4,0,.2,1), transform .75s; }
+        .revealed { opacity:1; transform:translateY(0); }
+
+        .svc-card { border:1px solid #f1f5f9; background:#fff; transition:transform .4s cubic-bezier(.4,0,.2,1), box-shadow .4s, border-color .4s; position:relative; overflow:hidden; }
+        .svc-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg, var(--gold), var(--teal)); opacity:0; transition:opacity .4s; }
+        .svc-card:hover { transform:translateY(-6px); box-shadow:0 24px 48px rgba(15,118,110,.08); border-color:rgba(212,175,55,.3); }
+        .svc-card:hover::before { opacity:1; }
+        .svc-icon { width:52px; height:52px; border-radius:14px; background:var(--cream); display:flex; align-items:center; justify-content:center; font-size:1.5rem; margin-bottom:1.25rem; transition:background .3s; }
+        .svc-card:hover .svc-icon { background:rgba(15,118,110,.08); }
+
+        .process-step { border-left:2px solid rgba(212,175,55,.2); padding-left:2rem; position:relative; }
+        .process-step::before { content:''; position:absolute; left:-6px; top:4px; width:10px; height:10px; border-radius:50%; background:var(--gold); border:2px solid #fff; box-shadow:0 0 0 3px rgba(212,175,55,.2); }
+
+        .stat-card { border:1px solid rgba(212,175,55,.2); background:rgba(255,255,255,.03); transition:background .3s; }
+        .stat-card:hover { background:rgba(255,255,255,.06); }
+
+        .faq-item { border:1px solid #f1f5f9; transition:border-color .3s, box-shadow .3s; }
+        .faq-item[open] { border-color:var(--gold); box-shadow:0 4px 20px rgba(0,0,0,.03); }
+        .faq-item[open] summary { color:var(--teal); }
+        details summary::-webkit-details-marker { display:none; }
+        .faq-icon { transition:transform .3s; display:inline-block; }
+        .faq-item[open] .faq-icon { transform:rotate(45deg); }
+
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+<!-- NAV -->
+<nav class="bg-white/95 backdrop-blur-md shadow-sm fixed w-full z-50 border-b border-gray-100">
+    <div class="container mx-auto px-6 py-4 flex justify-end items-center gap-8">
+        <a href="index.html" class="flex items-center space-x-3 group flex-1">
+            <div class="w-10 h-10 rounded bg-brand-deep flex items-center justify-center border border-brand-gold/30 transition group-hover:bg-brand-teal">
+                <img src="https://static.wixstatic.com/media/9deb48_0509776481944aa986f7fb37374e638a~mv2.png/v1/fill/w_431,h_333,al_c,lg_1,q_85,enc_avif,quality_auto/E%26E%20Gold%20Edit.png">
+            </div>
+            <div>
+                <span class="text-xl font-bold tracking-tight text-brand-deep font-display">Pro·Buds</span>
+                <span class="hidden sm:block text-[9px] text-gray-500 -mt-0.5 leading-none font-mono tracking-widest uppercase">Property Co. of Buddies</span>
+            </div>
+        </a>
+        <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
+            <a href="index.html" class="nav-link transition">Home</a>
+            <a href="about.html" class="nav-link transition">About</a>
+            <a href="properties.html" class="nav-link transition">Properties</a>
+            <a href="#" class="nav-link nav-active transition">Services</a>
+        </div>
+        <div class="flex items-center gap-3">
+            <a href="contact.html" class="hidden md:inline-block bg-brand-deep text-white px-6 py-2.5 font-semibold text-xs shadow hover:bg-brand-teal transition tracking-wide">
+                Get In Touch
+            </a>
+            <button id="menuBtn" class="md:hidden p-2 rounded hover:bg-gray-50 transition" onclick="toggleMenu()">
+                <svg class="w-5 h-5 text-brand-deep" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<header id="expertise" class="pt-36 pb-24 bg-brand-deep text-white relative overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse at 20% 50%, rgba(212,175,55,.07), transparent 60%), radial-gradient(ellipse at 80% 30%, rgba(15,118,110,.15), transparent 50%)"></div>
+    <div class="absolute inset-0 pointer-events-none opacity-5" style="background-image:linear-gradient(rgba(255,255,255,.2) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.2) 1px,transparent 1px);background-size:40px 40px;"></div>
+    <div class="container mx-auto px-6 text-center relative z-10">
+        <div class="section-label mb-5 justify-center">Our Expertise</div>
+        <h1 class="font-display text-5xl md:text-7xl font-bold mb-6">Expert Solutions for<br><em class="italic" style="color:#a2d2df">Every Step.</em></h1>
+        <p class="max-w-2xl mx-auto text-white/60 text-lg leading-relaxed">From first inquiry to title release and everything in between we've built services that cover every stage of your real estate journey, designed around your life.</p>
+        <div class="flex flex-wrap justify-center gap-10 mt-14 border-t border-white/10 pt-12">
+            <div class="text-center"><div class="font-display text-4xl font-bold text-brand-gold">6</div><div class="font-mono text-[10px] text-white/40 tracking-widest uppercase mt-1">Core Services</div></div>
+            <div class="text-center"><div class="font-display text-4xl font-bold text-brand-gold">300<span class="text-2xl">+</span></div><div class="font-mono text-[10px] text-white/40 tracking-widest uppercase mt-1">Licensed Agents</div></div>
+            <div class="text-center"><div class="font-display text-4xl font-bold text-brand-gold">18</div><div class="font-mono text-[10px] text-white/40 tracking-widest uppercase mt-1">Provinces Covered</div></div>
+            <div class="text-center"><div class="font-display text-4xl font-bold text-brand-gold">48hr</div><div class="font-mono text-[10px] text-white/40 tracking-widest uppercase mt-1">Avg. Response Time</div></div>
+        </div>
+    </div>
+</header>
+
+<!-- SERVICES GRID -->
+<section id="services" class="py-28">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-16 reveal">
+            <div class="section-label mb-4 justify-center">What We Do</div>
+            <h2 class="font-display text-4xl md:text-5xl font-bold text-brand-deep">Built for Every <em class="text-brand-teal italic">Kind of Buyer</em></h2>
+            <p class="max-w-xl mx-auto text-gray-500 mt-4 text-sm leading-relaxed">Whether you're a first-time buyer, a seasoned investor, or an OFW looking to build equity back home we have a service designed precisely for you.</p>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <div class="svc-card rounded-2xl p-8 reveal">
+                <div class="font-mono text-[9px] text-brand-gold tracking-widest uppercase mb-2">Service 01</div>
+                <h3 class="font-display text-2xl font-bold text-brand-deep mb-3">Property Acquisition</h3>
+                <p class="text-sm text-gray-500 leading-relaxed mb-5">Personalized scouting based on your lifestyle, family size, commute priorities, and budget. We walk through every property as if we were buying it ourselves checking structure, flood maps, HOA rules, and future resale value.</p>
+                <ul class="space-y-2 text-xs text-gray-500">
+                    <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-teal flex-shrink-0"></span>Free lifestyle and budget consultation</li>
+                    <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-teal flex-shrink-0"></span>Virtual and in-person site tours arranged</li>
+                    <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-teal flex-shrink-0"></span>Full due diligence before reservation</li>
+                    <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-teal flex-shrink-0"></span>Negotiation and reservation management</li>
+                </ul>
+            </div>
+
+            <div class="svc-card rounded-2xl p-8 reveal" style="transition-delay:.06s">
+                <div class="font-mono text-[9px] text-brand-gold tracking-widest uppercase mb-2">Service 02</div>
+                <h3 class="font-display text-2xl font-bold text-brand-deep mb-3">Investment Advisory</h3>
+                <p class="text-sm text-gray-500 leading-relaxed mb-5">For forward-thinkers. We provide market analytics, rental yield projections, and capital appreciation forecasts across Luzon's fastest-growing corridors including CALAX, SLEX, and upcoming economic zones.</p>
+                <ul class="space-y-2 text-xs text-gray-500">
+                    <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-teal flex-shrink-0"></span>Market trend reports per corridor</li>
+                    <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-teal flex-shrink-0"></span>Rental yield and ROI modeling</li>
+                    <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-teal flex-shrink-0"></span>Portfolio diversification strategies</li>
+                    <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-teal flex-shrink-0"></span>Pre-selling vs. RFO comparison</li>
+                </ul>
+            </div>
+
+            <div class="svc-card rounded-2xl p-8 reveal" style="transition-delay:.12s">
+                <div class="font-mono text-[9px] text-brand-gold tracking-widest uppercase mb-2">Service 03</div>
+                <h3 class="font-display text-2xl font-bold text-brand-deep mb-3">Bank Financing Assistance</h3>
+                <p class="text-sm text-gray-500 leading-relaxed mb-5">No more documentation headaches. Our certified loan officers work as liaison with BDO, BPI, Security Bank, Metrobank, and Pag-IBIG pre-qualifying you and packaging your documents for the fastest possible approval.</p>
+                <ul class="space-y-2 text-xs text-gray-500">
+                    <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-teal flex-shrink-0"></span>Free loan pre-qualification check</li>
+                    <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-teal flex-shrink-0"></span>Pag-IBIG, bank, and in-house financing</li>
+                    <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-teal flex-shrink-0"></span>Document checklist and preparation</li>
+                    <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-teal flex-shrink-0"></span>Rate comparison across lenders</li>
+                </ul>
+            </div>
+
+            <div class="svc-card rounded-2xl p-8 reveal" style="transition-delay:.18s">
+                <div class="font-mono text-[9px] text-brand-gold tracking-widest uppercase mb-2">Service 04</div>
+                <h3 class="font-display text-2xl font-bold text-brand-deep mb-3">Resale & Marketing</h3>
+                <p class="text-sm text-gray-500 leading-relaxed mb-5">Selling? We leverage our buyer network of 64,000+ families, professional photography, targeted digital ads, and open-house events to sell your property faster and at better prices than the market average.</p>
+                <ul class="space-y-2 text-xs text-gray-500">
+                    <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-teal flex-shrink-0"></span>Free property valuation and pricing</li>
+                    <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-teal flex-shrink-0"></span>Professional photography & 3D tour</li>
+                    <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-teal flex-shrink-0"></span>Targeted online and offline marketing</li>
+                    <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-teal flex-shrink-0"></span>Buyer screening and offer management</li>
+                </ul>
+            </div>
+
+            <div class="svc-card rounded-2xl p-8 reveal" style="transition-delay:.24s">
+                <div class="font-mono text-[9px] text-brand-gold tracking-widest uppercase mb-2">Service 05</div>
+                <h3 class="font-display text-2xl font-bold text-brand-deep mb-3">End-to-End Documentation</h3>
+                <p class="text-sm text-gray-500 leading-relaxed mb-5">From reservation forms and deed of absolute sale to BIR tax clearance, title transfer, and tax declarations we handle the entire red-tape marathon so you can focus on planning your move instead of paperwork.</p>
+                <ul class="space-y-2 text-xs text-gray-500">
+                    <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-teal flex-shrink-0"></span>BIR, Registry of Deeds, and LGU filing</li>
+                    <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-teal flex-shrink-0"></span>Transfer of title coordination</li>
+                    <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-teal flex-shrink-0"></span>Tax declaration and assessment updates</li>
+                    <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-teal flex-shrink-0"></span>Real-time progress dashboard access</li>
+                </ul>
+            </div>
+
+            <div class="svc-card rounded-2xl p-8 reveal" style="transition-delay:.3s">
+                <div class="font-mono text-[9px] text-brand-gold tracking-widest uppercase mb-2">Service 06</div>
+                <h3 class="font-display text-2xl font-bold text-brand-deep mb-3">Property Management</h3>
+                <p class="text-sm text-gray-500 leading-relaxed mb-5">For OFW buddies and busy investors. We manage your rental property end-to-end tenant screening, rent collection, maintenance coordination, and monthly reporting so your investment earns while you're away.</p>
+                <ul class="space-y-2 text-xs text-gray-500">
+                    <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-teal flex-shrink-0"></span>Tenant sourcing and background checks</li>
+                    <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-teal flex-shrink-0"></span>Monthly income and expense reports</li>
+                    <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-teal flex-shrink-0"></span>Maintenance and repair coordination</li>
+                    <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-teal flex-shrink-0"></span>Lease renewal and eviction support</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="process" class="py-24" style="background:var(--cream)">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-16 reveal">
+            <div class="section-label mb-4 justify-center">The Process</div>
+            <h2 class="font-display text-4xl md:text-5xl font-bold text-brand-deep">How It <em class="text-brand-teal italic">Works</em></h2>
+            <p class="max-w-xl mx-auto text-gray-500 mt-4 text-sm leading-relaxed">From your first message to your first night in your new home here's exactly what to expect when you work with Pro·Buds.</p>
+        </div>
+        <div class="max-w-3xl mx-auto space-y-10 reveal">
+            <div class="process-step pb-10">
+                <div class="font-mono text-[9px] text-brand-gold tracking-widest uppercase mb-1">Step 01</div>
+                <h3 class="font-display text-2xl font-bold text-brand-deep mb-2">Free Discovery Call</h3>
+                <p class="text-gray-500 text-sm leading-relaxed">We start with a 30-minute no-obligation call where we get to know you your budget, lifestyle, timeline, and goals. No pitch, no pressure. Just a conversation between friends.</p>
+            </div>
+            <div class="process-step pb-10">
+                <div class="font-mono text-[9px] text-brand-gold tracking-widest uppercase mb-1">Step 02</div>
+                <h3 class="font-display text-2xl font-bold text-brand-deep mb-2">Property Matching & Tours</h3>
+                <p class="text-gray-500 text-sm leading-relaxed">Based on your profile, your dedicated buddy-agent curates a shortlist of best-fit properties and arranges virtual or on-site tours at your schedule including weekends and evenings.</p>
+            </div>
+            <div class="process-step pb-10">
+                <div class="font-mono text-[9px] text-brand-gold tracking-widest uppercase mb-1">Step 03</div>
+                <h3 class="font-display text-2xl font-bold text-brand-deep mb-2">Offer, Financing & Reservation</h3>
+                <p class="text-gray-500 text-sm leading-relaxed">Once you've found your match, we handle the offer negotiation, guide you through financing options, and facilitate your reservation often within 48 hours of your final decision.</p>
+            </div>
+            <div class="process-step pb-10">
+                <div class="font-mono text-[9px] text-brand-gold tracking-widest uppercase mb-1">Step 04</div>
+                <h3 class="font-display text-2xl font-bold text-brand-deep mb-2">Documentation & Closing</h3>
+                <p class="text-gray-500 text-sm leading-relaxed">Our docs team takes over gathering requirements, filing with BIR, coordinating with the Registry of Deeds, and getting your title transferred. You receive real-time updates every step of the way.</p>
+            </div>
+            <div class="process-step">
+                <div class="font-mono text-[9px] text-brand-gold tracking-widest uppercase mb-1">Step 05</div>
+                <h3 class="font-display text-2xl font-bold text-brand-deep mb-2">Key Handover & Aftercare</h3>
+                <p class="text-gray-500 text-sm leading-relaxed">On handover day, your buddy is right there with you. And our relationship doesn't end there annual property check-ins, rental assistance, and market updates are yours for life.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section id="faqs" class="py-24">
+    <div class="container mx-auto px-6 max-w-3xl">
+        <div class="text-center mb-16 reveal">
+            <div class="section-label mb-4 justify-center">FAQs</div>
+            <h2 class="font-display text-4xl font-bold text-brand-deep">Frequently Asked <em class="text-brand-teal italic">Questions</em></h2>
+        </div>
+        <div class="max-w-3xl mx-auto space-y-4 reveal">
+            <details class="bg-white p-6 rounded shadow-sm group border border-gray-200 cursor-pointer transition">
+                <summary class="font-bold text-brand-deep list-none flex justify-between items-center text-sm font-display text-lg">
+                    How do I start looking for a property with Pro·Buds?
+                    <span class="faq-icon text-brand-gold text-2xl font-bold flex-shrink-0 ml-4 font-sans font-light">+</span>
+                </summary>
+                <p class="text-gray-500 text-sm mt-4 leading-relaxed pt-4 border-t border-gray-100">
+                    Simply reach out via our contact form, call our hotline, or visit our Makati office. A dedicated buddy-agent will schedule a free, no obligation consultation to understand your needs, budget, and lifestyle preferences. We'll then curate a shortlist of matched properties and arrange viewing schedulesall at no cost to buyers.</p>
+            </details>
+
+            <details class="bg-white p-6 rounded shadow-sm group border border-gray-200 cursor-pointer transition">
+                <summary class="font-bold text-brand-deep list-none flex justify-between items-center text-sm font-display text-lg">
+                    Does Pro·Buds charge service fees for buyers?
+                    <span class="faq-icon text-brand-gold text-2xl font-bold flex-shrink-0 ml-4 font-sans font-light">+</span>
+                </summary>
+                <p class="text-gray-500 text-sm mt-4 leading-relaxed pt-4 border-t border-gray-100">
+                    Absolutely not. Our services are completely free for property buyers. We earn through standard brokerage commissions paid by developers and property sellers, as stipulated under the Real Estate Service Act (R.A. 9646).</p>
+            </details>
+
+            <details class="bg-white p-6 rounded shadow-sm group border border-gray-200 cursor-pointer transition">
+                <summary class="font-bold text-brand-deep list-none flex justify-between items-center text-sm font-display text-lg">
+                    Can Pro·Buds assist with housing loans and financing?
+                    <span class="faq-icon text-brand-gold text-2xl font-bold flex-shrink-0 ml-4 font-sans font-light">+</span>
+                </summary>
+                <p class="text-gray-500 text-sm mt-4 leading-relaxed pt-4 border-t border-gray-100">
+                    Yes and this is one of our most valued services. We are accredited loan facilitators for BPI, BDO, Metrobank, Security Bank, RCBC, and the Pag-IBIG Fund. We prepare bank-ready packages, help you compute your loanable amount based on income, and guide you through the process.</p>
+            </details>
+
+            <details class="bg-white p-6 rounded shadow-sm group border border-gray-200 cursor-pointer transition">
+                <summary class="font-bold text-brand-deep list-none flex justify-between items-center text-sm font-display text-lg">
+                    What areas and regions does Pro·Buds cover?
+                    <span class="faq-icon text-brand-gold text-2xl font-bold flex-shrink-0 ml-4 font-sans font-light">+</span>
+                </summary>
+                <p class="text-gray-500 text-sm mt-4 leading-relaxed pt-4 border-t border-gray-100">
+                    We currently operate across Metro Manila (all 16 cities and municipalities), CALABARZON (Cavite: Imus, Tanza, General Trias, Naic, Dasmariñas; 
+                    Laguna: Santa Rosa, Biñan, Cabuyao; Batangas: Lipa City), and Western Visayas (Iloilo City, Pavia, Sta. Barbara, Leganes). We are actively expanding to Cebu, Davao, and Clark in the next 18 months.</p>
+            </details>
+
+            <details class="bg-white p-6 rounded shadow-sm group border border-gray-200 cursor-pointer transition">
+                <summary class="font-bold text-brand-deep list-none flex justify-between items-center text-sm font-display text-lg">
+                    How long does the entire property purchase process take?
+                    <span class="faq-icon text-brand-gold text-2xl font-bold flex-shrink-0 ml-4 font-sans font-light">+</span>
+                </summary>
+                <p class="text-gray-500 text-sm mt-4 leading-relaxed pt-4 border-t border-gray-100">
+                    For pre-selling properties, the reservation-to-title timeline typically spans 3–5 years (construction + title processing). For ready-for-occupancy (RFO) 
+                    properties using bank financing, expect 45–90 days from loan application to move-in. Cash transactions can close in as little as 15–30 days. Our documentation team expedites BIR clearance, Registry of Deeds processing, and title transfer to minimize delays.</p>
+            </details>
+
+            <details class="bg-white p-6 rounded shadow-sm group border border-gray-200 cursor-pointer transition">
+                <summary class="font-bold text-brand-deep list-none flex justify-between items-center text-sm font-display text-lg">
+                    What is the minimum budget to start investing in real estate?
+                    <span class="faq-icon text-brand-gold text-2xl font-bold flex-shrink-0 ml-4 font-sans font-light">+</span>
+                </summary>
+                <p class="text-gray-500 text-sm mt-4 leading-relaxed pt-4 border-t border-gray-100">
+                    With pre-selling properties, you can reserve a unit for as low as ₱5,000–₱20,000 and pay equity in low monthly installments over 24–36 months before bank financing kicks in. Our most affordable listings start at ₱1.2M in Cavite with monthly amortizations of ₱4,500–₱8,000 through Pag-IBIG. 
+                    There's genuinely an entry point for every budget our agents specialize in finding the right fit for your financial situation.</p>
+            </details>
+
+            <details class="bg-white p-6 rounded shadow-sm group border border-gray-200 cursor-pointer transition">
+                <summary class="font-bold text-brand-deep list-none flex justify-between items-center text-sm font-display text-lg">
+                    Can OFWs and overseas Filipinos buy property through Pro·Buds?
+                    <span class="faq-icon text-brand-gold text-2xl font-bold flex-shrink-0 ml-4 font-sans font-light">+</span>
+                </summary>
+                <p class="text-gray-500 text-sm mt-4 leading-relaxed pt-4 border-t border-gray-100">
+                    Absolutely. In fact, OFW investors are among our most satisfied clients. We offer fully digital transaction support e-signatures, video call consultations, online reservation forms, and overseas document apostilling guidance. We partner with Philippine consulates to assist with SPA (Special Power of Attorney) preparation. 
+                    Your beneficiary in the Philippines can also act on your behalf with proper documentation. We've completed hundreds of OFW transactions from the US, UK, Middle East, Canada, and Singapore.
+                </p>
+            </details>
+        </div>
+    </div>
+</section>
+      
+<!-- CTA -->
+<section class="py-24 bg-brand-deep text-white text-center relative overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse at 30% 50%, rgba(212,175,55,.07), transparent 60%), radial-gradient(ellipse at 80% 40%, rgba(15,118,110,.12), transparent 50%)"></div>
+    <div class="container mx-auto px-6 relative z-10 reveal">
+        <div class="section-label mb-5 justify-center">Get Started</div>
+        <h2 class="font-display text-4xl md:text-5xl font-bold mb-6">Ready to Talk to a <em class="text-brand-gold italic">Buddy?</em></h2>
+        <p class="max-w-lg mx-auto text-white/60 mb-10 leading-relaxed">Your free consultation is one click away. No pressure, no commitment just a genuine conversation about your property goals.</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="contact.html" class="bg-brand-gold text-brand-deep px-10 py-4 font-bold text-sm tracking-wide hover:bg-yellow-400 transition shadow-xl">Free Consultation</a>
+            <a href="properties.html" class="border border-white/30 text-white px-10 py-4 font-bold text-sm tracking-wide hover:bg-white/10 transition">Browse Properties</a>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-[#021817] text-gray-400 py-16 border-t border-brand-gold/20">
+    <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12 border-b border-gray-800 pb-12">
+            <div class="md:col-span-2">
+                <div class="flex items-center space-x-3 mb-6">
+                    <div class="w-10 h-10 rounded border border-brand-gold/30 flex items-center justify-center text-brand-gold font-bold">
+                        <img src="https://static.wixstatic.com/media/9deb48_0509776481944aa986f7fb37374e638a~mv2.png/v1/fill/w_431,h_333,al_c,lg_1,q_85,enc_avif,quality_auto/E%26E%20Gold%20Edit.png">
+                    </div>
+                    <div>
+                        <span class="text-xl font-bold text-white font-display">Pro·Buds</span>
+                        <p class="text-[10px] text-gray-500 font-mono tracking-widest uppercase mt-0.5">Property Company of Buddies</p>
+                    </div>
+                </div>
+                <p class="text-gray-500 text-sm leading-relaxed max-w-sm">Creating communities, transforming livesone property at a time. Your trusted real estate buddy across the Philippines.</p>
+            </div>
+            <div>
+                <div class="text-[10px] font-mono text-brand-gold uppercase tracking-widest mb-5">Quick Links</div>
+                <div class="space-y-3 text-sm">
+                    <a href="#expertise" class="block hover:text-brand-gold transition">Our Expertise</a>
+                    <a href="#services" class="block hover:text-brand-gold transition">Services</a>
+                    <a href="#process" class="block hover:text-brand-gold transition">Process</a>
+                    <a href="#faqs" class="block hover:text-brand-gold transition">FAQs</a>
+                </div>
+            </div>
+            <div>
+                <div class="text-[10px] font-mono text-brand-gold uppercase tracking-widest mb-5">Pro·Buds</div>
+                <div class="space-y-3 text-sm">
+                    <a href="index.html" class="block hover:text-brand-gold transition">Home</a>
+                    <a href="about.html" class="block hover:text-brand-gold transition">About</a>
+                    <a href="properties.html" class="block hover:text-brand-gold transition">Properties</a>
+                    <a href="contact.html" class="block hover:text-brand-gold transition">Contact Us</a>
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-600 font-mono uppercase tracking-widest">
+            <p>© 2026 Pro·Buds, Inc. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+
+<script>
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('revealed'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    details.forEach = Array.prototype.forEach;
+</script>
+</body>
+</html>

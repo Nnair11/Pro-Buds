@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Properties | Pro·Buds</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { brand: { teal: '#0f766e', deep: '#042f2e', gold: '#d4af37', light: '#f0fdfa', cream: '#faf7f2' } },
+                    fontFamily: { display: ['"Cormorant Garamond"', 'serif'], sans: ['"DM Sans"', 'sans-serif'], mono: ['"Space Mono"', 'monospace'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root { --teal:#0f766e; --deep-teal:#042f2e; --gold:#d4af37; --cream:#faf7f2; }
+        html { scroll-behavior:smooth; }
+        body { background:#fff; color:#334155; }
+        ::selection { background:rgba(212,175,55,.3); color:#042f2e; }
+
+        .nav-link { position:relative; letter-spacing:.04em; color:#475569; }
+        .nav-link::after { content:''; position:absolute; bottom:-4px; left:0; width:0; height:1.5px; background:var(--gold); transition:width .35s cubic-bezier(.4,0,.2,1); }
+        .nav-link:hover::after { width:100%; }
+        .nav-link:hover { color:var(--teal); }
+        .nav-active { color:var(--teal); font-weight:700; position:relative; }
+        .nav-active::after { content:''; position:absolute; bottom:-4px; left:0; width:100%; height:1.5px; background:var(--gold); }
+
+        .section-label { font-family:'Space Mono',monospace; font-size:.65rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); display:inline-flex; align-items:center; gap:8px; }
+        .section-label::before { content:''; width:28px; height:1px; background:var(--gold); }
+
+        .prop-card {
+            transition:transform .4s cubic-bezier(.4,0,.2,1), box-shadow .4s, border-color .4s;
+            border:1px solid #f1f5f9; background:#ffffff; border-radius:1.25rem; overflow:hidden;
+        }
+        .prop-card:hover {
+            transform:translateY(-8px);
+            box-shadow:0 24px 48px rgba(15,118,110,.10);
+            border-color:rgba(212,175,55,.35);
+        }
+        .prop-card img { transition:transform .8s cubic-bezier(.4,0,.2,1), filter .5s; filter:saturate(.9); }
+        .prop-card:hover img { transform:scale(1.06); filter:saturate(1.15); }
+        .prop-badge { font-family:'Space Mono',monospace; font-size:.58rem; letter-spacing:.1em; text-transform:uppercase; }
+
+        .filter-btn { font-family:'Space Mono',monospace; font-size:.67rem; letter-spacing:.1em; text-transform:uppercase; padding:8px 22px; border-radius:4px; border:1px solid #e2e8f0; cursor:pointer; transition:all .3s; background:#fff; color:#64748b; }
+        .filter-btn.active, .filter-btn:hover { background:var(--teal); color:white; border-color:var(--teal); }
+
+        .reveal { opacity:0; transform:translateY(28px); transition:opacity .75s cubic-bezier(.4,0,.2,1), transform .75s; }
+        .revealed { opacity:1; transform:translateY(0); }
+        .card-reveal { opacity:0; transform:translateY(20px); transition:opacity .5s ease, transform .5s ease; }
+        .card-reveal.revealed { opacity:1; transform:translateY(0); }
+
+        .badge-rfo { background:#0f766e; color:white; }
+        .badge-pre { background:#d4af37; color:white; }
+        .badge-condo { background:#042f2e; color:white; }
+        .badge-new { background:#dc2626; color:white; }
+
+        .search-input { border:1px solid #e2e8f0; border-radius:8px; padding:.75rem 1rem .75rem 2.8rem; font-family:'DM Sans',sans-serif; font-size:.875rem; outline:none; transition:all .3s; background:#fff; width:100%; }
+        .search-input:focus { border-color:var(--gold); box-shadow:0 0 0 3px rgba(212,175,55,.1); }
+
+        .sort-select { border:1px solid #e2e8f0; border-radius:8px; padding:.75rem 1rem; font-family:'Space Mono',monospace; font-size:.67rem; outline:none; cursor:pointer; background:#fff; color:#475569; text-transform:uppercase; letter-spacing:.05em; transition:all .3s; }
+        .sort-select:focus { border-color:var(--gold); }
+
+        #noResults { display:none; }
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+<!-- NAV -->
+<nav class="bg-white/95 backdrop-blur-md shadow-sm fixed w-full z-50 border-b border-gray-100">
+    <div class="container mx-auto px-6 py-4 flex justify-end items-center gap-8">
+        <a href="index.html" class="flex items-center space-x-3 group flex-1">
+            <div class="w-10 h-10 rounded bg-brand-deep flex items-center justify-center border border-brand-gold/30 transition group-hover:bg-brand-teal">
+                <img src="https://static.wixstatic.com/media/9deb48_0509776481944aa986f7fb37374e638a~mv2.png/v1/fill/w_431,h_333,al_c,lg_1,q_85,enc_avif,quality_auto/E%26E%20Gold%20Edit.png">
+            </div>
+            <div>
+                <span class="text-xl font-bold tracking-tight text-brand-deep font-display">Pro·Buds</span>
+                <span class="hidden sm:block text-[9px] text-gray-500 -mt-0.5 leading-none font-mono tracking-widest uppercase">Property Co. of Buddies</span>
+            </div>
+        </a>
+        <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
+            <a href="index.html" class="nav-link transition">Home</a>
+            <a href="about.html" class="nav-link transition">About</a>
+            <a href="#" class="nav-link nav-active transition">Properties</a>
+            <a href="services.html" class="nav-link transition">Services</a>
+        </div>
+        <div class="flex items-center gap-3">
+            <a href="contact.html" class="hidden md:inline-block bg-brand-deep text-white px-6 py-2.5 font-semibold text-xs shadow hover:bg-brand-teal transition tracking-wide">
+                Get In Touch
+            </a>
+            <button id="menuBtn" class="md:hidden p-2 rounded hover:bg-gray-50 transition" onclick="toggleMenu()">
+                <svg class="w-5 h-5 text-brand-deep" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+
+<!-- FEATURED HIGHLIGHT -->
+<section id="featured" class="pt-36 pb-12 bg-brand-deep text-white relative overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse at 20% 60%, rgba(212,175,55,.07), transparent 55%), radial-gradient(ellipse at 85% 30%, rgba(15,118,110,.15), transparent 50%)"></div>
+    <div class="container mx-auto px-6 relative z-10">
+        <div class="grid md:grid-cols-2 gap-16 items-center">
+            <div>
+                <div class="font-mono text-[9px] text-brand-gold tracking-widest uppercase mb-4">Featured Listing</div>
+                <h2 class="font-display text-4xl md:text-5xl font-bold mb-5">Elysian Heights<br><em class="italic text-brand-gold">Tagaytay Ridge</em></h2>
+                <p class="text-white/60 leading-relaxed mb-6">Our most prestigious listing this season. Perched along the Tagaytay ridge with panoramic views of Taal Lake, Elysian Heights Tagaytay Ridge offers an unparalleled highland lifestyle in a boutique 8-hectare estate.</p>
+                <div class="grid grid-cols-3 gap-4 mb-8 border-t border-white/10 pt-8">
+                    <div><div class="font-display text-3xl font-bold text-brand-gold">18.9M</div><div class="font-mono text-[9px] text-white/40 tracking-widest uppercase">Starting Price</div></div>
+                    <div><div class="font-display text-3xl font-bold text-white">250</div><div class="font-mono text-[9px] text-white/40 tracking-widest uppercase">Sqm. Lot</div></div>
+                    <div><div class="font-display text-3xl font-bold text-white">4</div><div class="font-mono text-[9px] text-white/40 tracking-widest uppercase">Bedroom Types</div></div>
+                </div>
+                <a href="contact.html" class="inline-block bg-brand-gold text-brand-deep px-10 py-4 font-bold text-sm tracking-wide hover:bg-yellow-400 transition shadow-xl">Inquire About This Property</a>
+            </div>
+            <div class="relative">
+                <img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=700&q=80" alt="Elysian Heights Tagaytay Ridge" class="rounded-2xl w-full h-80 object-cover shadow-2xl">
+                <div class="absolute top-4 left-4 prop-badge badge-new px-3 py-1.5 rounded text-[9px]">New Launch</div>
+                <div class="absolute bottom-4 right-4 bg-white/95 backdrop-blur-sm rounded-xl px-4 py-3 text-brand-deep">
+                    <div class="font-mono text-[9px] text-brand-gold tracking-widest uppercase">Tagaytay, Cavite</div>
+                    <div class="font-display text-sm font-bold mt-0.5">Panoramic Taal Views</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="portfolio" class="py-20 relative overflow-hidden" style="background:linear-gradient(145deg,#ffffff 0%,var(--cream) 100%)">
+    <div class="absolute top-0 right-0 w-[500px] h-[500px] rounded-full -mr-40 -mt-40 pointer-events-none" style="background:radial-gradient(circle,rgba(212,175,55,.07),transparent 70%)"></div>
+    <div class="container mx-auto px-6 relative z-10">
+        <div class="flex flex-col lg:flex-row justify-between items-end gap-8">
+            <div>
+                <div class="section-label mb-4">Our Portfolio</div>
+                <h1 class="font-display text-5xl md:text-6xl font-bold text-brand-deep">Find Your <em class="text-brand-teal italic">Perfect Place</em></h1>
+                <p class="text-gray-500 mt-4 max-w-xl text-sm leading-relaxed">Browse our curated selection of residential and investment properties across Cavite, Laguna, Metro Manila, and beyond. Every listing comes with a dedicated buddy-agent.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- FILTERS & SEARCH -->
+<section class="sticky top-[73px] z-40 bg-white/95 backdrop-blur-md border-b border-gray-100 py-4 shadow-sm">
+    <div class="container mx-auto px-6">
+        <div class="flex flex-col md:flex-row gap-4 items-center">
+            <!-- Search -->
+            <div class="relative flex-1 w-full">
+                <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                <input type="text" id="searchInput" placeholder="Search by name or location..." class="search-input" oninput="applyFilters()">
+            </div>
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap gap-2">
+                <button class="filter-btn active" data-filter="all" onclick="setFilter(this,'all')">All</button>
+                <button class="filter-btn" data-filter="Cavite" onclick="setFilter(this,'Cavite')">Cavite</button>
+                <button class="filter-btn" data-filter="Laguna" onclick="setFilter(this,'Laguna')">Laguna</button>
+                <button class="filter-btn" data-filter="Metro" onclick="setFilter(this,'Metro')">Metro Manila</button>
+                <button class="filter-btn" data-filter="RFO" onclick="setFilter(this,'RFO')">RFO</button>
+                <button class="filter-btn" data-filter="Pre-selling" onclick="setFilter(this,'Pre-selling')">Pre-selling</button>
+            </div>
+            <!-- Sort -->
+            <select class="sort-select" id="sortSelect" onchange="applyFilters()">
+                <option value="default">Default</option>
+                <option value="price-asc">Price: Low → High</option>
+                <option value="price-desc">Price: High → Low</option>
+            </select>
+        </div>
+        <div class="mt-3 flex items-center gap-3">
+            <span id="resultCount" class="font-mono text-[10px] text-gray-400 tracking-widest uppercase">Showing 21 properties</span>
+        </div>
+    </div>
+</section>
+
+<!-- PROPERTIES GRID -->
+<section id="listing" class="py-16">
+    <div class="container mx-auto px-6">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="propertyGrid"></div>
+        <div id="noResults" class="text-center py-20">
+            <h3 class="font-display text-2xl font-bold text-brand-deep mb-2">No Properties Found</h3>
+            <p class="text-gray-400 text-sm">Try adjusting your search or filters.</p>
+            <button onclick="resetFilters()" class="mt-6 text-xs font-mono font-bold text-brand-teal border border-brand-teal/30 px-6 py-3 rounded hover:bg-brand-light transition uppercase tracking-widest">Clear Filters</button>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- CTA -->
+<section class="py-20 text-center border-t border-gray-100">
+    <div class="container mx-auto px-6">
+        <div class="section-label mb-5 justify-center">Can't Find What You're Looking For?</div>
+        <h2 class="font-display text-4xl font-bold text-brand-deep mb-5">Let a Buddy <em class="text-brand-teal italic">Find It for You</em></h2>
+        <p class="max-w-lg mx-auto text-gray-500 mb-10 text-sm leading-relaxed">Tell us exactly what you need and we'll hand-search our network of developer partners to find properties that match even before they hit the public listings.</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="contact.html" class="bg-brand-deep text-white px-10 py-4 font-bold text-sm tracking-wide hover:bg-brand-teal transition shadow-xl">Tell Us Your Dream Home</a>
+            <a href="services.html" class="border border-brand-deep/20 text-brand-deep px-10 py-4 font-bold text-sm tracking-wide hover:bg-brand-light transition">View Our Services</a>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-[#021817] text-gray-400 py-16 border-t border-brand-gold/20">
+    <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12 border-b border-gray-800 pb-12">
+            <div class="md:col-span-2">
+                <div class="flex items-center space-x-3 mb-6">
+                    <div class="w-10 h-10 rounded border border-brand-gold/30 flex items-center justify-center text-brand-gold font-bold">
+                        <img src="https://static.wixstatic.com/media/9deb48_0509776481944aa986f7fb37374e638a~mv2.png/v1/fill/w_431,h_333,al_c,lg_1,q_85,enc_avif,quality_auto/E%26E%20Gold%20Edit.png">
+                    </div>
+                    <div>
+                        <span class="text-xl font-bold text-white font-display">Pro·Buds</span>
+                        <p class="text-[10px] text-gray-500 font-mono tracking-widest uppercase mt-0.5">Property Company of Buddies</p>
+                    </div>
+                </div>
+                <p class="text-gray-500 text-sm leading-relaxed max-w-sm">Creating communities, transforming livesone property at a time. Your trusted real estate buddy across the Philippines.</p>
+            </div>
+            <div>
+                <div class="text-[10px] font-mono text-brand-gold uppercase tracking-widest mb-5">Quick Links</div>
+                <div class="space-y-3 text-sm">
+                    <a href="#featured" class="block hover:text-brand-gold transition">Featured Listing</a>
+                    <a href="#portfolio" class="block hover:text-brand-gold transition">Portfolio</a>
+                    <a href="#listing" class="block hover:text-brand-gold transition">Search Listing</a>
+                </div>
+            </div>
+            <div>
+                <div class="text-[10px] font-mono text-brand-gold uppercase tracking-widest mb-5">Pro·Buds</div>
+                <div class="space-y-3 text-sm">
+                    <a href="index.html" class="block hover:text-brand-gold transition">Home</a>
+                    <a href="about.html" class="block hover:text-brand-gold transition">About</a>
+                    <a href="services.html" class="block hover:text-brand-gold transition">Services</a>
+                    <a href="contact.html" class="block hover:text-brand-gold transition">Contact Us</a>
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-600 font-mono uppercase tracking-widest">
+            <p>© 2026 Pro·Buds, Inc. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+
+<script>
+const allProperties = [
+    { name: "Vistara Highlands", loc: "Imus, Cavite", region: "Cavite", price: 2500000, display: "₱2.5M", type: "Pre-selling", img: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=600&q=80", beds: 3, sqm: 72, desc: "Contemporary cluster homes with ridge views and a resort-style amenity village." },
+    { name: "Sereno Coves", loc: "Tanza, Cavite", region: "Cavite", price: 1800000, display: "₱1.8M", type: "RFO", img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=600&q=80", beds: 2, sqm: 54, desc: "Affordable townhomes designed for first-time buyers with secure gated community." },
+    { name: "Aurum District", loc: "Mandaluyong", region: "Metro", price: 5200000, display: "₱5.2M", type: "Condo", img: "https://www.worldrecordacademy.com/business/img/112078-1_most_expensive_apartment_building_One_Hyde_Park.jpg", beds: 1, sqm: 40, desc: "Urban condo tower steps from EDSA with a rooftop infinity pool and co-working lounge." },
+    { name: "Verdanza Parkside", loc: "Sta. Rosa, Laguna", region: "Laguna", price: 8400000, display: "₱8.4M", type: "New Launch", img: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=600&q=80", beds: 4, sqm: 180, desc: "Lakefront single-detached homes inside an 80-hectare eco-township with its own lake trail." },
+    { name: "Solara Crest", loc: "San Fernando, Pampanga", region: "Pampanga", price: 3100000, display: "₱3.1M", type: "Pre-selling", img: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=600&q=80", beds: 3, sqm: 88, desc: "Sunrise-facing residences along the SCTEX corridor with strong capital appreciation potential." },
+    { name: "Magnolia Grove Estates", loc: "Sta. Rosa, Laguna", region: "Laguna", price: 4800000, display: "₱4.8M", type: "RFO", img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=600&q=80", beds: 3, sqm: 120, desc: "Ready-for-occupancy homes in a fully developed subdivision with school and commercial area." },
+    { name: "Lumière Residences", loc: "Pasig City", region: "Metro", price: 3900000, display: "₱3.9M", type: "Condo", img: "https://d1ov4zfz2t2vta.cloudfront.net/storage/project_files/Zenith%20A1%20Tower.jpg", beds: 2, sqm: 55, desc: "Award-winning mid-rise condo with a French-inspired facade near Ortigas CBD." },
+    { name: "Tierra Alta Village", loc: "General Trias, Cavite", region: "Cavite", price: 6200000, display: "₱6.2M", type: "Pre-selling", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80", beds: 4, sqm: 200, desc: "Premium single-detached homes on elevated terrain offering cool mountain breezes." },
+    { name: "Bellona Springs", loc: "Silang, Cavite", region: "Cavite", price: 4100000, display: "₱4.1M", type: "RFO", img: "https://images.squarespace-cdn.com/content/v1/613b54e53041c4442ec79df8/1d76ea85-2370-44f4-8f5c-497b9b29fd68/B+-+19.jpg", beds: 3, sqm: 110, desc: "Spring-themed community with man-made lagoon and walking paths through native gardens." },
+    { name: "Elysian Heights Tagaytay Ridge", loc: "Tagaytay", region: "Cavite", price: 18900000, display: "₱18.9M", type: "New Launch", img: "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=600&q=80", beds: 4, sqm: 250, desc: "Flagship highland estate with panoramic Taal Lake views in a boutique 8-hectare enclave." },
+    { name: "Casita Verde", loc: "General Trias, Cavite", region: "Cavite", price: 1200000, display: "₱1.2M", type: "Pre-selling", img: "https://images.homify.com/v1476212336/p/photo/image/1671146/IMG_7219.jpg", beds: 2, sqm: 42, desc: "Entry-level socialized housing with modern finishes proof that affordability can still look beautiful." },
+    { name: "Azure Sands", loc: "Pasay City", region: "Metro", price: 4500000, display: "₱4.5M", type: "Condo", img: "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=600&q=80", beds: 1, sqm: 38, desc: "Beachfront-inspired condo resort with a 3,000 sqm wave pool just minutes from the airport." },
+    { name: "Harborview Terrace", loc: "Tanza, Cavite", region: "Cavite", price: 1900000, display: "₱1.9M", type: "RFO", img: "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&w=600&q=80", beds: 3, sqm: 60, desc: "Spacious townhomes near the Manila Bay shoreline perfect for growing young families." },
+    { name: "Primavera Fields", loc: "Lipa, Batangas", region: "Batangas", price: 2200000, display: "₱2.2M", type: "Pre-selling", img: "https://imkatconstruction.com/wp-content/uploads/2026/02/image-24-1.webp", beds: 3, sqm: 80, desc: "Italian-inspired estate community in the cool highlands of Lipa City near Maryknoll." },
+    { name: "Zenith Towers Alabang", loc: "Muntinlupa", region: "Metro", price: 5800000, display: "₱5.8M", type: "Condo", img: "https://images.summitmedia-digital.com/spotph/images/2024/03/26/eluria-1711427170.jpg", beds: 2, sqm: 62, desc: "South's most sought-after high-rise with 360-degree views of Laguna de Bay and the city." },
+    { name: "Cobblestone Walk", loc: "Dasmariñas, Cavite", region: "Cavite", price: 3400000, display: "₱3.4M", type: "RFO", img: "https://images.unsplash.com/photo-1516455590571-18256e5bb9ff?auto=format&fit=crop&w=600&q=80", beds: 3, sqm: 100, desc: "European-styled townhomes with cobblestone lanes, pocket gardens, and plaza center." },
+    { name: "Pinnacle One Imus", loc: "Imus, Cavite", region: "Cavite", price: 15200000, display: "₱15.2M", type: "New Launch", img: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=600&q=80", beds: 5, sqm: 320, desc: "The most prestigious address in Imus luxury house-and-lot with 5 bedrooms and private pool." },
+    { name: "Coral Bay Residences", loc: "Cainta, Rizal", region: "Rizal", price: 2800000, display: "₱2.8M", type: "Pre-selling", img: "https://cdn.houseplansservices.com/product/du39te6oqh62mvb1bhgm1cs91h/w800x533.jpg?v=23", beds: 3, sqm: 75, desc: "Inspired by coastal living with Mediterranean architecture and easy access to C5." },
+    { name: "Hacienda Reina", loc: "Sto. Tomas, Batangas", region: "Batangas", price: 2100000, display: "₱2.1M", type: "RFO", img: "https://www.kaminskiyhomeremodeling.com/wp-content/uploads/2024/06/whole-home-remodel-design-themes-for-san-diego-homes.jpg", beds: 3, sqm: 85, desc: "Spanish colonial-themed estate community with a central plaza and parish church." },
+    { name: "Northgate Skyline", loc: "BGC, Taguig", region: "Metro", price: 18400000, display: "₱18.4M", type: "Condo", img: "https://images.summitmedia-digital.com/spotph/images/2024/03/26/bantayan-1-1711427172.webp", beds: 3, sqm: 95, desc: "Ultra-premium BGC tower with concierge service, private dining room, and sky lounge." },
+    { name: "Lakemont Serenity", loc: "Calamba, Laguna", region: "Laguna", price: 7200000, display: "₱7.2M", type: "Pre-selling", img: "https://architizer-prod.imgix.net/media/1443105553103Sk_Lake_Minnetonka_01.jpg?fit=max&w=1680&q=60&auto=format&auto=compress&cs=strip", beds: 4, sqm: 160, desc: "A wellness-first community built around a natural lake with yoga pavilions and forest paths." },
+];
+
+let activeFilter = 'all';
+let activeSortEl = null;
+
+const badgeClass = { 'RFO': 'badge-rfo', 'Pre-selling': 'badge-pre', 'Condo': 'badge-condo', 'New Launch': 'badge-new' };
+
+function setFilter(btn, filter) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeFilter = filter;
+    applyFilters();
+}
+
+function applyFilters() {
+    const query = document.getElementById('searchInput').value.toLowerCase();
+    const sort = document.getElementById('sortSelect').value;
+
+    let filtered = allProperties.filter(p => {
+        const matchesFilter = activeFilter === 'all'
+            || p.region.includes(activeFilter)
+            || p.type === activeFilter;
+        const matchesSearch = p.name.toLowerCase().includes(query) || p.loc.toLowerCase().includes(query);
+        return matchesFilter && matchesSearch;
+    });
+
+    if (sort === 'price-asc') filtered.sort((a, b) => a.price - b.price);
+    else if (sort === 'price-desc') filtered.sort((a, b) => b.price - a.price);
+
+    renderCards(filtered);
+    document.getElementById('resultCount').innerText = `Showing ${filtered.length} propert${filtered.length !== 1 ? 'ies' : 'y'}`;
+    document.getElementById('noResults').style.display = filtered.length === 0 ? 'block' : 'none';
+}
+
+function resetFilters() {
+    document.getElementById('searchInput').value = '';
+    document.getElementById('sortSelect').value = 'default';
+    document.querySelectorAll('.filter-btn').forEach((b, i) => { b.classList.remove('active'); if (i === 0) b.classList.add('active'); });
+    activeFilter = 'all';
+    applyFilters();
+}
+
+function renderCards(props) {
+    const grid = document.getElementById('propertyGrid');
+    grid.innerHTML = '';
+    if (props.length === 0) return;
+    props.forEach((p, i) => {
+        const bc = badgeClass[p.type] || 'badge-pre';
+        grid.innerHTML += `
+        <div class="prop-card card-reveal" style="transition-delay:${(i % 6) * 0.04}s">
+            <div class="relative overflow-hidden h-52">
+                <img src="${p.img}" alt="${p.name}" class="h-full w-full object-cover" loading="lazy">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent pointer-events-none"></div>
+                <span class="prop-badge ${bc} absolute top-4 left-4 px-2.5 py-1.5 rounded text-[9px]">${p.type}</span>
+                <div class="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-1.5">
+                    <span class="font-bold text-brand-teal font-mono text-sm">${p.display}</span>
+                </div>
+            </div>
+            <div class="p-6">
+                <h3 class="font-display text-xl font-bold text-brand-deep mb-1">${p.name}</h3>
+                <div class="flex items-center gap-1.5 mb-3">
+                    <svg class="w-3 h-3 text-brand-gold flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+                    <span class="text-xs text-gray-400">${p.loc}</span>
+                </div>
+                <p class="text-xs text-gray-500 leading-relaxed mb-5">${p.desc}</p>
+                <div class="flex items-center gap-4 text-xs text-gray-400 border-t border-gray-100 pt-4 mb-4">
+                    <div class="flex items-center gap-1.5">
+                        <span>${p.beds} Bed${p.beds > 1 ? 's' : ''}</span>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <span>${p.sqm} sqm</span>
+                    </div>
+                </div>
+                <div class="flex items-center justify-between">
+                    <div>
+                        <div class="text-[9px] font-mono text-gray-400 tracking-widest uppercase">Starting at</div>
+                        <div class="font-bold text-brand-teal text-lg font-display">${p.display}</div>
+                    </div>
+                    <a href="contact.html" class="bg-brand-deep text-white text-[10px] font-bold font-mono px-5 py-2.5 rounded-lg hover:bg-brand-teal transition tracking-widest uppercase">Inquire →</a>
+                </div>
+            </div>
+        </div>
+        `;
+    });
+
+    // Trigger reveal on newly added cards
+    setTimeout(() => {
+        document.querySelectorAll('.card-reveal').forEach(el => el.classList.add('revealed'));
+    }, 30);
+}
+
+// Init
+renderCards(allProperties);
+
+// Observer for other reveals
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('revealed'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

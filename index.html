@@ -63,6 +63,8 @@
         }
         .nav-link:hover::after { width:100%; }
         .nav-link:hover { color: var(--teal); }
+        .nav-active { color:var(--teal); font-weight:700; }
+        .nav-active::after { content:''; position:absolute; bottom:-4px; left:0; width:100%; height:1.5px; background:var(--gold); }
 
         /* ── HERO ── */
         #home {
@@ -278,7 +280,7 @@
         </a>
 
         <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
-            <a href="#home" class="nav-link transition">Home</a>
+            <a href="#home" class="nav-link nav-active transition">Home</a>
             <a href="about.html" class="nav-link transition">About</a>
             <a href="properties.html" class="nav-link transition">Properties</a>
             <a href="services.html" class="nav-link transition">Services</a>
